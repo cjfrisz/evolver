@@ -29,7 +29,7 @@ namespace evolver {
   private:
     Coordinates *lowerLeft;
     Coordinates *upperRight;
-  }
+  };
 
 }
 

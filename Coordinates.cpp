@@ -1,6 +1,6 @@
 #include "Coordinates.h"
 
-namespace cjfrisz {
+namespace evolver {
 
   Coordinates::Coordinates () {
     this->x = 0;

@@ -21,7 +21,7 @@ namespace evolver {
     int x;
     int y;
     int z;
-  }
+  };
 
 }
 

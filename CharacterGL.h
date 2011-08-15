@@ -25,7 +25,7 @@ namespace evolver {
 
   private:
     Character *character;
-  }
+  };
 
 }
 
