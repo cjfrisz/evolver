@@ -1,9 +1,12 @@
-#include "character.h"
+#include "Coordinates.h"
+#include "Hitbox.h"
+#include "Character.h"
 
-namespace cjfrisz {
+namespace evolver {
 
   Character::Character () {
-    // Nothing to do yet
+    this->origin = Coordinates();
+    this->box = Hitbox();
   }
 
   Character::~Character () {
@@ -14,20 +17,40 @@ namespace cjfrisz {
     // Nothing to do yet
   }
 
-  void Character::moveUp () {
-
+  Coordinates Character::getOrigin () {
+    return this->origin;
   }
 
-  void Character::moveDown () {
-
+  Hitbox Character::getBox () {
+    return this->box;
   }
 
-  void Character::moveLeft () {
-
+  void Character::moveUp (int dist) {
+    this->origin.setY(this->origin.getY() + dist);
+    this->box.moveUp();
+    
+    return;
   }
 
-  void Character::moveRight () {
+  void Character::moveDown (int dist) {
+    this->origin.setY(this->origin.getY() - dist);
+    this->box.moveDown();
+    
+    return;
+  }
 
+  void Character::moveRight (int dist) {
+    this->origin.setX(this->origin.getX() + dist);
+    this->box.moveRight();
+        
+    return;
+  }
+
+  void Character::moveLeft (int dist) {
+    this->origin.setX(this->origin.getX() - dist);
+    this->box.moveLeft();
+    
+    return;
   }
 
 }

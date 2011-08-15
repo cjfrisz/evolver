@@ -3,7 +3,7 @@
 
 #include "Coordinates.h"
 
-namespace cjfrisz {
+namespace evolver {
   
   class Hitbox {
   public:
@@ -16,11 +16,10 @@ namespace cjfrisz {
 
     void moveUp (int dist);
     void moveDown (int dist);
-    void moveLeft (int dist);
     void moveRight (int dist);
+    void moveLeft (int dist);
 
     bool isPointInside (Coordinates point);
-    bool doesLineIntersect (Coordinates point);
 
   private:
     Coordinates lowerLeft;

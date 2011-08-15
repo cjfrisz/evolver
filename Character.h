@@ -1,7 +1,10 @@
 #ifndef __CHARACTER_H__
 #define __CHARACTER_H__
 
-namespace cjfrisz {
+#include "Coordinates.h"
+#include "Hitbox.h"
+
+namespace evolver {
 
   class Character {
   public:
@@ -9,13 +12,17 @@ namespace cjfrisz {
     ~Character (void);
     Character (const Character &original);
 
-    void moveUp (void);
-    void moveDown (void);
-    void moveLeft (void);
-    void moveRight (void);
+    Coordinates getOrigin (void);
+    Hitbox getBox (void);
+
+    void moveUp (int dist);
+    void moveDown (int dist);
+    void moveRight (int dist);
+    void moveLeft (int dist);
 
   private:
-
+    Coordinates origin;
+    Hitbox box;
   }
 
 }
