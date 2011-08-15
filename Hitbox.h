@@ -14,6 +14,11 @@ namespace evolver {
     void setHeight (int height);
     void setWidth (int width);
 
+    Coordinates getLowerLeft (void);
+    Coordinates getLowerRight (void);
+    Coordinates getUpperRight (void);
+    Coordinates getUpperLeft (void);
+
     void moveUp (int dist);
     void moveDown (int dist);
     void moveRight (int dist);
@@ -22,8 +27,8 @@ namespace evolver {
     bool isPointInside (Coordinates point);
 
   private:
-    Coordinates lowerLeft;
-    Coordinates upperRight;
+    Coordinates *lowerLeft;
+    Coordinates *upperRight;
   }
 
 }

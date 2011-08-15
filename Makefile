@@ -8,11 +8,11 @@
 #----------VARIABLES----------#
 
 # Path variables
-PATH=.
-SRC_PATH=$(PATH)
-BASE_PATH=$(SRC_PATH)
+PROJ_PATH=.
+SRC_PATH=$(PROJ_PATH)
+BASE_PATH=$(SRC_PROJ_PATH)
 GL_PATH=$(SRC_PATH)
-BIN_PATH=$(PATH)
+BIN_PATH=$(PROJ_PATH)
 
 # Compiler variables
 CXX=g++
@@ -26,10 +26,8 @@ TARGET_FLAGS=$(GL_FLAGS) $(SDL_FLAGS) $(CXX_FLAGS)
 TARGET=$(BIN_PATH)/evolver
 MAIN=evolver.cpp
 BASE_FILES=Character.o \
-	Controller.o \
 	Coordinates.o \
-	Hitbox.o \
-	Player.o
+	Hitbox.o 
 GL_FILES=Character-gl.o
 O_FILES=$(BASE_FILES) $(GL_FILES)
 

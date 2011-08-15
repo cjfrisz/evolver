@@ -4,8 +4,8 @@
 namespace evolver {
 
   Hitbox::Hitbox (void) {
-    this->lowerLeft = Coordinates();
-    this->upperRight = Coordinates();
+    this->lowerLeft = new Coordinates();
+    this->upperRight = new Coordinates();
   }
 
   Hitbox::~Hitbox (void) {
@@ -26,6 +26,42 @@ namespace evolver {
     this->upperRight.setX((this->lowerLeft.getX() + width));
 
     return;
+  }
+
+  Coordinates Hitbox:getLowerLeft () {
+    Coordinates lowerLeft = Coordinates();
+
+    lowerLeft.setX(this->lowerLeft->getX());
+    lowerLeft.setY(this->lowerLeft->getY());
+
+    return lowerLeft;
+  }
+
+  Coordinates Hitbox::getLowerRight () {
+    Coordinates lowerRight = Coordinates();
+
+    lowerRight.setX(this->upperRight.getX());
+    lowerRight.setY(this->lowerLeft.getY());
+
+    return lowerRight;
+  }
+
+  Coordinates Hitbox::getUpperRight () {
+    Coordinates upperRight = Coordinates();
+    
+    upperRight.setX(this->upperRight.getX());
+    upperRight.setY(this->upperRight.getY());
+    
+    return upperRight;
+  }
+
+  Coordinates Hitbox::getUpperLeft () {
+    Coordinates upperLeft = Coordinates();
+
+    upperLeft.setX(this->lowerLeft.getX());
+    upperLeft.setY(this->upperRight.getY());
+
+    return upperLeft;
   }
 
   void Hitbox::moveUp (int dist) {

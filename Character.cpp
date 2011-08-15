@@ -5,23 +5,34 @@
 namespace evolver {
 
   Character::Character () {
-    this->origin = Coordinates();
-    this->box = Hitbox();
+    this->origin = new Coordinates();
+    this->box = new Hitbox();
   }
 
   Character::~Character () {
-    // Nothing to do yet
+    delete this->origin;
+    delete this->box;
   }
 
   Character::Character (const Character &original) {
-    // Nothing to do yet
+    *(this->origin) = original->origin;
+    *(this->box) = original->box;
   }
 
-  Coordinates Character::getOrigin () {
+  Character &Character::operator= (const Character &original) {
+    if (this != &original) {
+      *(this->origin) = original->origin;
+      *(this->box) = original->box;
+    }
+
+    return *this
+  }
+
+  Coordinates *Character::getOrigin () {
     return this->origin;
   }
 
-  Hitbox Character::getBox () {
+  Hitbox *Character::getBox () {
     return this->box;
   }
 
