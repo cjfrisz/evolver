@@ -15,6 +15,8 @@ namespace evolver {
   const int SCREEN_WIDTH = 400;
   const int SCREEN_HEIGHT = 600;
 
+  const int BACKGROUND_COLOR4I[4] = { 255, 255, 255, 0 };
+
   SDL_Surface *screen = NULL;
 
   CharacterGL *cgl;
@@ -27,8 +29,8 @@ namespace evolver {
   void initGame (void);
   
   void evolverKey (SDL_keysym *keysym);
-  void evolverEvent (void);
   void evolverDraw (void);  
+  void evolverEventLoop (void);
 
   void quit (int code) {
     SDL_Quit();
@@ -75,7 +77,100 @@ namespace evolver {
   }
 
   void initGame (void) {
+    Coordinates *origin = new Coordinates();
+
+    origin->setX(0);
+    origin->setY(0);
     
+    cgl = new CharacterGL();
+    character = new Character();
+    charBox = new Hitbox();
+
+    character.setOrigin(origin);
+    cgl.setCharacter(character);
+
+    charBox.setHeight(CHARACTER_SIZE);
+    charBox.setWidth(CHARACTER_SIZE);
+    cgl.setBox(charBox);
+
+    return;
+  }
+
+  void evolverKey (SDL_keysym *keysym) {
+    switch (keysym->sym) 
+      {
+      case SDLK_UP:
+	cgl.getCharacter().moveUp();
+	break;
+      case SDLK_DOWN:
+	cgl.getCharacter().moveDown();
+	break;
+      case SDLK_LEFT:
+	cgl.getCharacter().moveLeft();
+	break;
+      case SDLK_RIGHT:
+	cgl.getCharacter().moveRight();
+	break;
+      }
+
+    return;
+  }
+
+  void evolverDraw (void) {
+    glClearColor(BACKGROUND_COLOR4I[0],
+		 BACKGROUND_COLOR4I[1],
+		 BACKGROUND_COLOR4I[2],
+		 BACKGROUND_COLOR4I[3]);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    glLoadIdentity();
+
+    glTranslatei(cgl->getCharacter()->getOrigin()->getX(),
+		 cgl->getCharacter()->getOrigin()->getY(),
+		 0);
+    cgl->draw();
+    glTranslatei(-(cgl->getCharacter()->getOrigin()->getX()),
+		 -(cgl->getCharacter()->getOrigin()->getY()),
+		 0);
+
+    SDL_GL_SwapBuffers();
+
+    return;
+  }
+
+  void evolverEventLoop (void) {
+    bool done;
+    SDL_Event event;
+
+    done = false;
+
+    while ((done == false) && (SDL_WaitEvent(&event))) {
+      switch (event.type) 
+	{
+	case SDL_KEYDOWN:
+	  evolverKey(&event.key.keysym);
+	  break;
+	case SDL_QUIT:
+	  done = true;
+	  break;
+	}
+
+      evolverDraw();
+    }
+
+    return;
+  }
+
+  int main (int argc, char *argv[]) {
+    initSDL();
+    initGL();
+    initGame();
+
+    evolverEventLoop();
+
+    quit(EXIT_SUCCESS);
+
+    return EXIT_SUCCESS;
   }
 
 }

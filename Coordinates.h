@@ -1,7 +1,7 @@
 #ifndef __COORDINATES_H__
 #define __COORDINATES_H__
 
-namespace cjfrisz {
+namespace evolver {
 
   class Coordinates {
   public:

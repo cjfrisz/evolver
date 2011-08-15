@@ -41,7 +41,7 @@ namespace evolver {
   }
 
   void CharacterGL::draw (bool debug) {   
-    glColor3fv(CHARACTER_COLOR3I);
+    glColor4iv(CHARACTER_COLOR3I);
 
     glBegin(GL_QUADS);
     glVertex2i(0, 0);
@@ -57,7 +57,7 @@ namespace evolver {
       Coordinates upperRight = this->box->getUpperRight();
       Coordinates upperLeft = this->box->getUpperLeft();
 
-      glColor3fv(DEBUG_HITBOX_COLOR3I);
+      glColor4iv(DEBUG_HITBOX_COLOR3I);
 
       glBegin(GL_LINE_LOOP);
       glVertex2i(lowerLeft.getX(), lowerLeft.getY());
