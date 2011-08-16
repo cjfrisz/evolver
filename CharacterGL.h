@@ -5,10 +5,10 @@
 
 namespace evolver {
 
-  const int CHARACTER_SIZE = 10;
+  const int CHARACTER_SIZE = 30;
 
-  const int CHARACTER_COLOR4I[4] = { 255, 0, 0, 0 };
-  const int DEBUG_HITBOX_COLOR4I[4] = { 0, 0, 0, 0 };
+  const int CHARACTER_COLOR4I[4] = { 255, 0, 0, 255 };
+  const int DEBUG_HITBOX_COLOR4I[4] = { 0, 0, 0, 255 };
 
   class CharacterGL {
   public:

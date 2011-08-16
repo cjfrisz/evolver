@@ -2,8 +2,7 @@
 #include <iostream>
 
 #include <SDL/SDL.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
+#include <SDL/SDL_opengl.h>
 
 #include "Character.h"
 #include "CharacterGL.h"
@@ -12,14 +11,12 @@
 
 namespace evolver {
   
-  const int SCREEN_WIDTH = 400;
-  const int SCREEN_HEIGHT = 600;
+  const int SCREEN_WIDTH = 640;
+  const int SCREEN_HEIGHT = 480;
 
-  const int BACKGROUND_COLOR4I[4] = { 255, 255, 255, 0 };
+  const int BACKGROUND_COLOR4I[4] = { 255, 255, 255, 255 };
 
   const int MOVE_DIST = 5;
-
-  SDL_Surface *screen = NULL;
 
   CharacterGL *cgl;
   Character *character;
@@ -42,38 +39,56 @@ namespace evolver {
   }
 
   void initSDL (void) {
-    int width = SCREEN_WIDTH;
-    int height = SCREEN_HEIGHT;
-    int bpp = 32;//SDL_GetVideoInfo()->vfmt->BitsPerPixel;
-    int flags = SDL_OPENGL | SDL_FULLSCREEN;
+    int bpp = 0;
+    int flags = SDL_OPENGL;
+    const SDL_VideoInfo *info;
 
-    if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
       std::cerr << "Error initializing SDL." << std::endl;
       quit(EXIT_FAILURE);
     }
 
-    if (SDL_SetVideoMode(width, height, bpp, flags) == 0) {
+    info = SDL_GetVideoInfo();
+
+    if (info == 0) {
+      std::cerr << "Video info query failed." << std::endl;
+      quit(EXIT_FAILURE);
+    }
+
+    bpp = info->vfmt->BitsPerPixel;
+
+// SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 5 );
+// SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 5 );
+// SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 5 );
+// SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE, 16 );
+    SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
+
+    if (SDL_SetVideoMode(SCREEN_WIDTH, 
+			 SCREEN_HEIGHT, 
+			 bpp, 
+			 flags) == 0) {
       std::cerr << "Error initializing video." << std::endl;
       quit(EXIT_FAILURE);
     }
     
+    SDL_WM_SetCaption("Evolver early beta 0.01", NULL);
+
+    return;
   }
 
   void initGL (void) {
-    int width = SCREEN_WIDTH;
-    int height = SCREEN_HEIGHT;
-
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    glViewport(0, 0, (GLsizei)width, (GLsizei)height);
+    glViewport(0, 0, (GLsizei)SCREEN_WIDTH, (GLsizei)SCREEN_HEIGHT);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     
-    gluOrtho2D(0, width, 0, height);
+    gluOrtho2D(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT);
 
     glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
 
     return;
   }
@@ -114,6 +129,10 @@ namespace evolver {
       case SDLK_RIGHT:
 	cgl->getCharacter()->moveRight(MOVE_DIST);
 	break;
+      case SDLK_ESCAPE:
+      case SDLK_q:
+	quit(EXIT_SUCCESS);
+	break;
       }
 
     return;
@@ -128,12 +147,31 @@ namespace evolver {
 
     glLoadIdentity();
 
-    glTranslatef((float)cgl->getCharacter()->getOrigin()->getX(),
-		 (float)cgl->getCharacter()->getOrigin()->getY(),
+    // Draw test
+    glColor4i(0, 0, 255, 255);
+    
+    glTranslatef((SCREEN_WIDTH / 2),
+		 (SCREEN_HEIGHT / 2),
+		 0.0);
+
+    glBegin(GL_POLYGON);
+    glVertex2i(50, 50);
+    glVertex2i(100, 50);
+    glVertex2i(75, 100);
+    glEnd();
+
+    glFlush();
+
+    glTranslatef(-(SCREEN_WIDTH / 2),
+		 -(SCREEN_HEIGHT / 2),
+		 0.0);
+
+    glTranslatef((float)((cgl->getCharacter()->getOrigin()->getX())),
+		 (float)((cgl->getCharacter()->getOrigin()->getY())),
 		 0.0);
     cgl->draw();
-    glTranslatef((float)-(cgl->getCharacter()->getOrigin()->getX()),
-		 (float)-(cgl->getCharacter()->getOrigin()->getY()),
+    glTranslatef((float)(-(cgl->getCharacter()->getOrigin()->getX())),
+		 (float)(-(cgl->getCharacter()->getOrigin()->getY())),
 		 0.0);
 
     SDL_GL_SwapBuffers();
@@ -148,6 +186,8 @@ namespace evolver {
     done = false;
 
     while ((done == false) && (SDL_WaitEvent(&event))) {
+      evolverDraw();
+
       switch (event.type) 
 	{
 	case SDL_KEYDOWN:
@@ -157,8 +197,6 @@ namespace evolver {
 	  done = true;
 	  break;
 	}
-
-      evolverDraw();
     }
 
     return;

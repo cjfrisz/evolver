@@ -56,7 +56,7 @@ all : $(TARGET)
 
 # Build and run
 run : all
-	$(BIN_PATH)/$(TARGET)
+	$(TARGET)
 
 # Target
 $(TARGET) : $(MAIN) $(O_FILES)

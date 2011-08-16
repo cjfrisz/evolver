@@ -70,7 +70,7 @@ namespace evolver {
       glVertex2i(upperLeft.getX(), upperRight.getY());
       glEnd();
     }
-    
+
     return;
   }
 
