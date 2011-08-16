@@ -19,12 +19,12 @@ namespace evolver {
   }
 
   CharacterGL::CharacterGL (const CharacterGL &original) {
-    *(this->character) = original->character;
+    *(this->character) = *(original.character);
   }
 
   CharacterGL &CharacterGL::operator= (const CharacterGL &original) {
     if (this != &original) {
-      *(this->character) = original->character;
+      *(this->character) = *(original.character);
     }
 
     return *this;
@@ -41,7 +41,7 @@ namespace evolver {
   }
 
   void CharacterGL::draw (bool debug) {   
-    glColor4iv(CHARACTER_COLOR3I);
+    glColor4iv(CHARACTER_COLOR4I);
 
     glBegin(GL_QUADS);
     glVertex2i(0, 0);
@@ -50,14 +50,18 @@ namespace evolver {
     glVertex2i(CHARACTER_SIZE, 0);    
     glEnd();
 
-    if ((debug == true) && (this->box != NULL)) {
+    if ((debug == true) && (this->character->getBox() != NULL)) {
       // I hate mid-function declaration, but this'll save memory
-      Coordinates lowerLeft = this->box->getLowerLeft();
-      Coordinates lowerRight = this->box->getLowerRight();
-      Coordinates upperRight = this->box->getUpperRight();
-      Coordinates upperLeft = this->box->getUpperLeft();
+      Coordinates lowerLeft = 
+	this->character->getBox()->getLowerLeft();
+      Coordinates lowerRight = 
+	this->character->getBox()->getLowerRight();
+      Coordinates upperRight = 
+	this->character->getBox()->getUpperRight();
+      Coordinates upperLeft = 
+	this->character->getBox()->getUpperLeft();
 
-      glColor4iv(DEBUG_HITBOX_COLOR3I);
+      glColor4iv(DEBUG_HITBOX_COLOR4I);
 
       glBegin(GL_LINE_LOOP);
       glVertex2i(lowerLeft.getX(), lowerLeft.getY());

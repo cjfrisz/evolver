@@ -28,7 +28,7 @@ MAIN=evolver.cpp
 BASE_FILES=Coordinates.o \
 	Hitbox.o \
 	Character.o
-GL_FILES=Character-gl.o
+GL_FILES=CharacterGL.o
 O_FILES=$(BASE_FILES) $(GL_FILES)
 
 # Delete utility and target variables

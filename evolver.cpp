@@ -17,6 +17,8 @@ namespace evolver {
 
   const int BACKGROUND_COLOR4I[4] = { 255, 255, 255, 0 };
 
+  const int MOVE_DIST = 5;
+
   SDL_Surface *screen = NULL;
 
   CharacterGL *cgl;
@@ -43,7 +45,7 @@ namespace evolver {
     int width = SCREEN_WIDTH;
     int height = SCREEN_HEIGHT;
     int bpp = SDL_GetVideoInfo()->vfmt->BitsPerPixel;
-    int flags = SDL_OPENGL | SDL_FULLSCREEN
+    int flags = SDL_OPENGL | SDL_FULLSCREEN;
 
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
       std::cerr << "Error initializing SDL." << std::endl;
@@ -64,7 +66,7 @@ namespace evolver {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    glViewport(0, 0, (GLsizei)viewWidth, (GLsizei)viewHeight);
+    glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -86,12 +88,13 @@ namespace evolver {
     character = new Character();
     charBox = new Hitbox();
 
-    character.setOrigin(origin);
-    cgl.setCharacter(character);
+    character->setOrigin(origin);
 
-    charBox.setHeight(CHARACTER_SIZE);
-    charBox.setWidth(CHARACTER_SIZE);
-    cgl.setBox(charBox);
+    charBox->setHeight(CHARACTER_SIZE);
+    charBox->setWidth(CHARACTER_SIZE);
+    character->setBox(charBox);
+
+    cgl->setCharacter(character);
 
     return;
   }
@@ -100,16 +103,16 @@ namespace evolver {
     switch (keysym->sym) 
       {
       case SDLK_UP:
-	cgl.getCharacter().moveUp();
+	cgl->getCharacter()->moveUp(MOVE_DIST);
 	break;
       case SDLK_DOWN:
-	cgl.getCharacter().moveDown();
+	cgl->getCharacter()->moveDown(MOVE_DIST);
 	break;
       case SDLK_LEFT:
-	cgl.getCharacter().moveLeft();
+	cgl->getCharacter()->moveLeft(MOVE_DIST);
 	break;
       case SDLK_RIGHT:
-	cgl.getCharacter().moveRight();
+	cgl->getCharacter()->moveRight(MOVE_DIST);
 	break;
       }
 
@@ -125,13 +128,13 @@ namespace evolver {
 
     glLoadIdentity();
 
-    glTranslatei(cgl->getCharacter()->getOrigin()->getX(),
-		 cgl->getCharacter()->getOrigin()->getY(),
-		 0);
+    glTranslatef((float)cgl->getCharacter()->getOrigin()->getX(),
+		 (float)cgl->getCharacter()->getOrigin()->getY(),
+		 0.0);
     cgl->draw();
-    glTranslatei(-(cgl->getCharacter()->getOrigin()->getX()),
-		 -(cgl->getCharacter()->getOrigin()->getY()),
-		 0);
+    glTranslatef((float)-(cgl->getCharacter()->getOrigin()->getX()),
+		 (float)-(cgl->getCharacter()->getOrigin()->getY()),
+		 0.0);
 
     SDL_GL_SwapBuffers();
 
@@ -161,16 +164,16 @@ namespace evolver {
     return;
   }
 
-  int main (int argc, char *argv[]) {
-    initSDL();
-    initGL();
-    initGame();
+}
 
-    evolverEventLoop();
-
-    quit(EXIT_SUCCESS);
-
-    return EXIT_SUCCESS;
-  }
-
+int main (int argc, char *argv[]) {
+  evolver::initSDL();
+  evolver::initGL();
+  evolver::initGame();
+  
+  evolver::evolverEventLoop();
+  
+  evolver::quit(EXIT_SUCCESS);
+  
+  return EXIT_SUCCESS;
 }

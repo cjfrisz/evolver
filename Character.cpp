@@ -15,17 +15,17 @@ namespace evolver {
   }
 
   Character::Character (const Character &original) {
-    *(this->origin) = original->origin;
-    *(this->box) = original->box;
+    *(this->origin) = *(original.origin);
+    *(this->box) = *(original.box);
   }
 
   Character &Character::operator= (const Character &original) {
     if (this != &original) {
-      *(this->origin) = original->origin;
-      *(this->box) = original->box;
+      *(this->origin) = *(original.origin);
+      *(this->box) = *(original.box);
     }
 
-    return *this
+    return *this;
   }
 
   Coordinates *Character::getOrigin () {
@@ -37,29 +37,29 @@ namespace evolver {
   }
 
   void Character::moveUp (int dist) {
-    this->origin.setY(this->origin.getY() + dist);
-    this->box.moveUp();
+    this->origin->setY(this->origin->getY() + dist);
+    this->box->moveUp(dist);
     
     return;
   }
 
   void Character::moveDown (int dist) {
-    this->origin.setY(this->origin.getY() - dist);
-    this->box.moveDown();
+    this->origin->setY(this->origin->getY() - dist);
+    this->box->moveDown(dist);
     
     return;
   }
 
   void Character::moveRight (int dist) {
-    this->origin.setX(this->origin.getX() + dist);
-    this->box.moveRight();
+    this->origin->setX(this->origin->getX() + dist);
+    this->box->moveRight(dist);
         
     return;
   }
 
   void Character::moveLeft (int dist) {
-    this->origin.setX(this->origin.getX() - dist);
-    this->box.moveLeft();
+    this->origin->setX(this->origin->getX() - dist);
+    this->box->moveLeft(dist);
     
     return;
   }

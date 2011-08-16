@@ -15,7 +15,7 @@ namespace evolver {
     CharacterGL (void);
     ~CharacterGL (void);
     CharacterGL (const CharacterGL &original);
-    Character &operator= (const CharacterGL &original);
+    CharacterGL &operator= (const CharacterGL &original);
 
     Character *getCharacter (void);
     

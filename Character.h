@@ -13,21 +13,21 @@ namespace evolver {
     Character (const Character &original);
     Character &operator= (const Character &original);
 
-    Coordinates *Character::getOrigin (void);
-    Hitbox *Character::getBox (void);
+    Coordinates *getOrigin (void);
+    Hitbox *getBox (void);
 
-    void Character::setOrigin (Coordinates *origin);
-    void Character::setBox (Hitbox *box);
+    void setOrigin (Coordinates *origin);
+    void setBox (Hitbox *box);
 
-    void Character::moveUp (int dist);
-    void Character::moveDown (int dist);
-    void Character::moveRight (int dist);
-    void Character::moveLeft (int dist);
+    void moveUp (int dist);
+    void moveDown (int dist);
+    void moveRight (int dist);
+    void moveLeft (int dist);
 
   private:
     Coordinates *origin;
     Hitbox *box;
-  }
+  };
 
 }
 
