@@ -36,6 +36,18 @@ namespace evolver {
     return this->box;
   }
 
+  void Character::setOrigin (Coordinates *origin) {
+    this->origin = origin;
+
+    return;
+  }
+
+  void Character::setBox (Hitbox *box) {
+    this->box = box;
+
+    return;
+  }
+
   void Character::moveUp (int dist) {
     this->origin->setY(this->origin->getY() + dist);
     this->box->moveUp(dist);

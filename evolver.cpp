@@ -44,7 +44,7 @@ namespace evolver {
   void initSDL (void) {
     int width = SCREEN_WIDTH;
     int height = SCREEN_HEIGHT;
-    int bpp = SDL_GetVideoInfo()->vfmt->BitsPerPixel;
+    int bpp = 32;//SDL_GetVideoInfo()->vfmt->BitsPerPixel;
     int flags = SDL_OPENGL | SDL_FULLSCREEN;
 
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {

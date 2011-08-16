@@ -16,10 +16,11 @@ BIN_PATH=$(PROJ_PATH)
 
 # Compiler variables
 CXX=g++
-CXX_FLAGS=-o
+DEBUG_FLAGS=-g
+CXX_FLAGS=$(DEBUG_FLAGS) -o
 GL_FLAGS=-lGLU -lGL
 SDL_FLAGS=-lSDL
-O_FLAGS=-c
+O_FLAGS=$(DEBUG_FLAGS) -c
 TARGET_FLAGS=$(GL_FLAGS) $(SDL_FLAGS) $(CXX_FLAGS)
 
 # Source/target file variables
