@@ -57,16 +57,16 @@ namespace evolver {
 
     bpp = info->vfmt->BitsPerPixel;
 
-// SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 5 );
-// SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 5 );
-// SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 5 );
-// SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE, 16 );
-    SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
+    SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
+    SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5);
+    SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
     if (SDL_SetVideoMode(SCREEN_WIDTH, 
 			 SCREEN_HEIGHT, 
 			 bpp, 
-			 flags) == 0) {
+			 flags) == NULL) {
       std::cerr << "Error initializing video." << std::endl;
       quit(EXIT_FAILURE);
     }
@@ -77,18 +77,20 @@ namespace evolver {
   }
 
   void initGL (void) {
+    int width = SCREEN_WIDTH;
+    int height = SCREEN_HEIGHT;
+    
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    glViewport(0, 0, (GLsizei)SCREEN_WIDTH, (GLsizei)SCREEN_HEIGHT);
+    glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     
-    gluOrtho2D(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT);
+    gluOrtho2D(0, width, 0, height);
 
     glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
 
     return;
   }
@@ -139,6 +141,14 @@ namespace evolver {
   }
 
   void evolverDraw (void) {
+    glColor4i(0, 0, 255, 255);
+    
+    glBegin(GL_TRIANGLES);
+    glVertex2i(50, 50);
+    glVertex2i(100, 50);
+    glVertex2i(75, 100);
+    glEnd();
+
     glClearColor(BACKGROUND_COLOR4I[0],
 		 BACKGROUND_COLOR4I[1],
 		 BACKGROUND_COLOR4I[2],
@@ -148,35 +158,18 @@ namespace evolver {
     glLoadIdentity();
 
     // Draw test
-    glColor4i(0, 0, 255, 255);
-    
-    glTranslatef((SCREEN_WIDTH / 2),
-		 (SCREEN_HEIGHT / 2),
-		 0.0);
-
-    glBegin(GL_POLYGON);
-    glVertex2i(50, 50);
-    glVertex2i(100, 50);
-    glVertex2i(75, 100);
-    glEnd();
-
+//    glTranslatef((float)((cgl->getCharacter()->getOrigin()->getX())),
+//		 (float)((cgl->getCharacter()->getOrigin()->getY())),
+//		 0.0);
+//    cgl->draw();
+//    glTranslatef((float)(-(cgl->getCharacter()->getOrigin()->getX())),
+//		 (float)(-(cgl->getCharacter()->getOrigin()->getY())),
+//		 0.0);
+//
     glFlush();
-
-    glTranslatef(-(SCREEN_WIDTH / 2),
-		 -(SCREEN_HEIGHT / 2),
-		 0.0);
-
-    glTranslatef((float)((cgl->getCharacter()->getOrigin()->getX())),
-		 (float)((cgl->getCharacter()->getOrigin()->getY())),
-		 0.0);
-    cgl->draw();
-    glTranslatef((float)(-(cgl->getCharacter()->getOrigin()->getX())),
-		 (float)(-(cgl->getCharacter()->getOrigin()->getY())),
-		 0.0);
-
     SDL_GL_SwapBuffers();
-
-    return;
+//
+//    return;
   }
 
   void evolverEventLoop (void) {
