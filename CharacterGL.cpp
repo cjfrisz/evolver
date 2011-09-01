@@ -44,10 +44,10 @@ namespace evolver {
     glColor4iv(CHARACTER_COLOR4I);
 
     glBegin(GL_QUADS);
-    glVertex2i(0, 0);
-    glVertex2i(0, CHARACTER_SIZE);
-    glVertex2i(CHARACTER_SIZE, CHARACTER_SIZE);
-    glVertex2i(CHARACTER_SIZE, 0);    
+	glVertex2i(0, 0);
+	glVertex2i(0, CHARACTER_SIZE);
+	glVertex2i(CHARACTER_SIZE, CHARACTER_SIZE);
+	glVertex2i(CHARACTER_SIZE, 0);    
     glEnd();
 
     if ((debug == true) && (this->character->getBox() != NULL)) {
