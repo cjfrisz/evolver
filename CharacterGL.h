@@ -7,8 +7,8 @@ namespace evolver {
 
   const int CHARACTER_SIZE = 30;
 
-  const int CHARACTER_COLOR3I[3] = { 128, 64, 64 };
-  const int DEBUG_HITBOX_COLOR3I[3] = { 64, 255, 64 };
+  const float CHARACTER_COLOR3F[3] = { 0.5, 0.25, 0.25 };
+  const float DEBUG_HITBOX_COLOR3F[3] = { 0.25, 1.0, 0.25 };
 
   class CharacterGL {
   public:

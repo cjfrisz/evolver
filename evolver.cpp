@@ -52,8 +52,9 @@ namespace evolver {
   }
 
   void initSFML () {
-    // Should we want to change any settings
     sf::WindowSettings settings;
+
+    
     
     app.Create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP),
 	       TITLE,
