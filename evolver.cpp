@@ -64,9 +64,6 @@ namespace evolver {
   }
 
   void initGL (void) {
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
     glViewport(0, 0, (GLsizei)SCREEN_WIDTH, (GLsizei)SCREEN_HEIGHT);
 
     glMatrixMode(GL_PROJECTION);
@@ -125,6 +122,7 @@ namespace evolver {
   }
 
   void evolverDraw (void) {
+    
     app.SetActive();
 
     glClearColor(BACKGROUND_COLOR4I[0],
@@ -135,19 +133,13 @@ namespace evolver {
 
     glLoadIdentity();
 
-    glBegin(GL_LINE_LOOP);
-    	glVertex2f(10.0, 10.0);
-    	glVertex2f(15.0, 10.0);
-    	glVertex2f(12.5, 15.0);
-    glEnd();
-
-//glTranslatef((float)((cgl->getCharacter()->getOrigin()->getX())),
-//		 (float)((cgl->getCharacter()->getOrigin()->getY())),
-//		 0.0);
-//cgl->draw();
-//glTranslatef((float)(-(cgl->getCharacter()->getOrigin()->getX())),
-//		 (float)(-(cgl->getCharacter()->getOrigin()->getY())),
-//		 0.0);
+    glTranslatef((float)((cgl->getCharacter()->getOrigin()->getX())),
+		 (float)((cgl->getCharacter()->getOrigin()->getY())),
+		 0.0);
+    cgl->draw();
+    glTranslatef((float)(-(cgl->getCharacter()->getOrigin()->getX())),
+		 (float)(-(cgl->getCharacter()->getOrigin()->getY())),
+		 0.0);
     
     app.Display();
     
