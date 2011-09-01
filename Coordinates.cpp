@@ -16,31 +16,31 @@ namespace evolver {
     // Nothing to do yet
   }
 
-  int Coordinates::getX (void) {
+  T Coordinates::getX (void) {
     return this->x;
   }
 
-  int Coordinates::getY (void) {
+  T Coordinates::getY (void) {
     return this->y;
   }
 
-  int Coordinates::getZ (void) {
+  T Coordinates::getZ (void) {
     return this->z;
   }
 
-  void Coordinates::setX (int x) {
+  void Coordinates::setX (T x) {
     this->x = x;
 
     return;
   }
 
-  void Coordinates::setY (int y) {
+  void Coordinates::setY (T y) {
     this->y = y;
 
     return;
   }
 
-  void Coordinates::setZ (int z) {
+  void Coordinates::setZ (T z) {
     this->z = z;
 
     return;

@@ -3,24 +3,25 @@
 
 namespace evolver {
 
+  template <class T>
   class Coordinates {
   public:
     Coordinates (void);
     ~Coordinates (void);
     Coordinates (const Coordinates &original);
 
-    int getX (void);
-    int getY (void);
-    int getZ (void);
+    T getX (void);
+    T getY (void);
+    T getZ (void);
 
-    void setX (int x);
-    void setY (int y);
-    void setZ (int z);
+    void setX (T x);
+    void setY (T y);
+    void setZ (T z);
 
   private:
-    int x;
-    int y;
-    int z;
+    T x;
+    T y;
+    T z;
   };
 
 }
