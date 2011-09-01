@@ -71,7 +71,10 @@ namespace evolver {
     
     gluOrtho2D(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT);
 
+    glDisable(GL_DEPTH_TEST);
+
     glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
 
     return;
   }
@@ -122,12 +125,6 @@ namespace evolver {
   }
 
   void evolverDraw (void) {
-    glBegin(GL_POLYGON);
-    glVertex2i(50, 50);
-    glVertex2i(100, 50);
-    glVertex2i(75, 100);
-    glEnd();
-
     glClearColor(BACKGROUND_COLOR4I[0],
 		 BACKGROUND_COLOR4I[1],
 		 BACKGROUND_COLOR4I[2],
@@ -136,13 +133,7 @@ namespace evolver {
 
     glLoadIdentity();
 
-    glTranslatef((float)((cgl->getCharacter()->getOrigin()->getX())),
-		 (float)((cgl->getCharacter()->getOrigin()->getY())),
-		 0.0);
-    cgl->draw();
-    glTranslatef((float)(-(cgl->getCharacter()->getOrigin()->getX())),
-		 (float)(-(cgl->getCharacter()->getOrigin()->getY())),
-		 0.0);
+    cgl->draw(true);
     
     app.Display();
     

@@ -41,13 +41,21 @@ namespace evolver {
   }
 
   void CharacterGL::draw (bool debug) {   
-    glColor4iv(CHARACTER_COLOR4I);
+    glColor3iv(CHARACTER_COLOR3I);
 
     glBegin(GL_QUADS);
-	glVertex2i(0, 0);
-	glVertex2i(0, CHARACTER_SIZE);
-	glVertex2i(CHARACTER_SIZE, CHARACTER_SIZE);
-	glVertex2i(CHARACTER_SIZE, 0);    
+	    glVertex2i(this->character->getOrigin()->getX(), 
+		       this->character->getOrigin()->getY());
+	    glVertex2i(this->character->getOrigin()->getX(),
+		       (this->character->getOrigin()->getY() + 
+			CHARACTER_SIZE));
+	    glVertex2i((this->character->getOrigin()->getX() + 
+			CHARACTER_SIZE), 
+		       (this->character->getOrigin()->getY() + 
+			CHARACTER_SIZE));
+	    glVertex2i((this->character->getOrigin()->getX() + 
+			CHARACTER_SIZE), 
+		       this->character->getOrigin()->getY());    
     glEnd();
 
     if ((debug == true) && (this->character->getBox() != NULL)) {
@@ -61,13 +69,13 @@ namespace evolver {
       Coordinates upperLeft = 
 	this->character->getBox()->getUpperLeft();
 
-      glColor4iv(DEBUG_HITBOX_COLOR4I);
+      glColor3iv(DEBUG_HITBOX_COLOR3I);
 
       glBegin(GL_LINE_LOOP);
-      glVertex2i(lowerLeft.getX(), lowerLeft.getY());
-      glVertex2i(lowerRight.getX(), lowerRight.getY());
-      glVertex2i(upperRight.getX(), upperRight.getY());
-      glVertex2i(upperLeft.getX(), upperRight.getY());
+	      glVertex2i(lowerLeft.getX(), lowerLeft.getY());
+	      glVertex2i(lowerRight.getX(), lowerRight.getY());
+	      glVertex2i(upperRight.getX(), upperRight.getY());
+	      glVertex2i(upperLeft.getX(), upperRight.getY());
       glEnd();
     }
 
