@@ -141,9 +141,7 @@ namespace evolver {
   }
 
   void evolverDraw (void) {
-    glColor4i(0, 0, 255, 255);
-    
-    glBegin(GL_TRIANGLES);
+    glBegin(GL_POLYGON);
     glVertex2i(50, 50);
     glVertex2i(100, 50);
     glVertex2i(75, 100);
