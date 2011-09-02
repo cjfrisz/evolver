@@ -4,8 +4,8 @@
 namespace evolver {
 
   Hitbox::Hitbox (void) {
-    this->lowerLeft = new Coordinates();
-    this->upperRight = new Coordinates();
+    this->lowerLeft = new Coordinates<float>();
+    this->upperRight = new Coordinates<float>();
   }
 
   Hitbox::~Hitbox (void) {
@@ -28,8 +28,8 @@ namespace evolver {
     return;
   }
 
-  Coordinates Hitbox::getLowerLeft () {
-    Coordinates lowerLeft = Coordinates();
+  Coordinates<float> Hitbox::getLowerLeft () {
+    Coordinates<float> lowerLeft = Coordinates<float>();
 
     lowerLeft.setX(this->lowerLeft->getX());
     lowerLeft.setY(this->lowerLeft->getY());
@@ -37,8 +37,8 @@ namespace evolver {
     return lowerLeft;
   }
 
-  Coordinates Hitbox::getLowerRight () {
-    Coordinates lowerRight = Coordinates();
+  Coordinates<float> Hitbox::getLowerRight () {
+    Coordinates<float> lowerRight = Coordinates<float>();
 
     lowerRight.setX(this->upperRight->getX());
     lowerRight.setY(this->lowerLeft->getY());
@@ -46,8 +46,8 @@ namespace evolver {
     return lowerRight;
   }
 
-  Coordinates Hitbox::getUpperRight () {
-    Coordinates upperRight = Coordinates();
+  Coordinates<float> Hitbox::getUpperRight () {
+    Coordinates<float> upperRight = Coordinates<float>();
     
     upperRight.setX(this->upperRight->getX());
     upperRight.setY(this->upperRight->getY());
@@ -55,8 +55,8 @@ namespace evolver {
     return upperRight;
   }
 
-  Coordinates Hitbox::getUpperLeft () {
-    Coordinates upperLeft = Coordinates();
+  Coordinates<float> Hitbox::getUpperLeft () {
+    Coordinates<float> upperLeft = Coordinates<float>();
 
     upperLeft.setX(this->lowerLeft->getX());
     upperLeft.setY(this->upperRight->getY());
@@ -92,7 +92,7 @@ namespace evolver {
     return;    
   }
 
-  bool Hitbox::isPointInside (Coordinates point) {
+  bool Hitbox::isPointInside (Coordinates<float> point) {
     bool pointInside;
 
     if (point.getX() > this->lowerLeft->getX() &&

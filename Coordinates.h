@@ -3,6 +3,9 @@
 
 namespace evolver {
 
+/*************************
+ *   CLASS DECLARATION	 *
+ *************************/
   template <class T>
   class Coordinates {
   public:
@@ -23,6 +26,64 @@ namespace evolver {
     T y;
     T z;
   };
+
+
+/*************************
+ *  CLASS DEFINITION	 *
+ *************************/
+
+  template <class T>
+  Coordinates<T>::Coordinates () {
+    this->x = 0;
+    this->y = 0;
+    this->z = 0;
+  }
+  
+  template <class T>
+  Coordinates<T>::~Coordinates () {
+    // Nothing to do yet
+  }
+
+  template <class T>
+  Coordinates<T>::Coordinates (const Coordinates &original) {
+    // Nothing to do yet
+  }
+
+  template <class T>
+  T Coordinates<T>::getX (void) {
+    return this->x;
+  }
+
+  template <class T>
+  T Coordinates<T>::getY (void) {
+    return this->y;
+  }
+
+  template <class T>
+  T Coordinates<T>::getZ (void) {
+    return this->z;
+  }
+
+  template <class T>
+  void Coordinates<T>::setX (T x) {
+    this->x = x;
+
+    return;
+  }
+
+  template <class T>
+  void Coordinates<T>::setY (T y) {
+    this->y = y;
+
+    return;
+  }
+
+  template <class T>
+  void Coordinates<T>::setZ (T z) {
+    this->z = z;
+
+    return;
+  }
 
 }
 

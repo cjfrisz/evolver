@@ -2,45 +2,45 @@
 
 namespace evolver {
 
-  Coordinates::Coordinates () {
+  Coordinates<T>::Coordinates () {
     this->x = 0;
     this->y = 0;
     this->z = 0;
   }
 
-  Coordinates::~Coordinates () {
+  Coordinates<T>::~Coordinates () {
     // Nothing to do yet
   }
 
-  Coordinates::Coordinates (const Coordinates &original) {
+  Coordinates<T>::Coordinates (const Coordinates &original) {
     // Nothing to do yet
   }
 
-  T Coordinates::getX (void) {
+  T Coordinates<T>::getX (void) {
     return this->x;
   }
 
-  T Coordinates::getY (void) {
+  T Coordinates<T>::getY (void) {
     return this->y;
   }
 
-  T Coordinates::getZ (void) {
+  T Coordinates<T>::getZ (void) {
     return this->z;
   }
 
-  void Coordinates::setX (T x) {
+  void Coordinates<T>::setX (T x) {
     this->x = x;
 
     return;
   }
 
-  void Coordinates::setY (T y) {
+  void Coordinates<T>::setY (T y) {
     this->y = y;
 
     return;
   }
 
-  void Coordinates::setZ (T z) {
+  void Coordinates<T>::setZ (T z) {
     this->z = z;
 
     return;

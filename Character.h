@@ -13,10 +13,10 @@ namespace evolver {
     Character (const Character &original);
     Character &operator= (const Character &original);
 
-    Coordinates *getOrigin (void);
+    Coordinates<float> *getOrigin (void);
     Hitbox *getBox (void);
 
-    void setOrigin (Coordinates *origin);
+    void setOrigin (Coordinates<float> *origin);
     void setBox (Hitbox *box);
 
     void moveUp (int dist);
@@ -25,7 +25,7 @@ namespace evolver {
     void moveLeft (int dist);
 
   private:
-    Coordinates *origin;
+    Coordinates<float> *origin;
     Hitbox *box;
   };
 

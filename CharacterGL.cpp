@@ -60,13 +60,13 @@ namespace evolver {
 
     if ((debug == true) && (this->character->getBox() != NULL)) {
       // I hate mid-function declaration, but this'll save memory
-      Coordinates lowerLeft = 
+      Coordinates<float> lowerLeft = 
 	this->character->getBox()->getLowerLeft();
-      Coordinates lowerRight = 
+      Coordinates<float> lowerRight = 
 	this->character->getBox()->getLowerRight();
-      Coordinates upperRight = 
+      Coordinates<float> upperRight = 
 	this->character->getBox()->getUpperRight();
-      Coordinates upperLeft = 
+      Coordinates<float> upperLeft = 
 	this->character->getBox()->getUpperLeft();
 
       glColor3fv(DEBUG_HITBOX_COLOR3F);

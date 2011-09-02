@@ -26,8 +26,7 @@ TARGET_FLAGS=$(SFML_FLAGS) $(GL_FLAGS) $(CXX_FLAGS)
 # Source/target file variables
 TARGET=$(BIN_PATH)/evolver
 MAIN=evolver.cpp
-BASE_FILES=Coordinates.o \
-	Hitbox.o \
+BASE_FILES=Hitbox.o \
 	Character.o
 GL_FILES=CharacterGL.o
 O_FILES=$(BASE_FILES) $(GL_FILES)

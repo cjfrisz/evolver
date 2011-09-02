@@ -81,7 +81,7 @@ namespace evolver {
   }
 
   void initGame (void) {
-    Coordinates *origin = new Coordinates();
+    Coordinates<float> *origin = new Coordinates<float>();
     Character *character = new Character();
     Hitbox *charBox = new Hitbox();
 

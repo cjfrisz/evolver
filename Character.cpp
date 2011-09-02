@@ -5,7 +5,7 @@
 namespace evolver {
 
   Character::Character () {
-    this->origin = new Coordinates();
+    this->origin = new Coordinates<float>();
     this->box = new Hitbox();
   }
 
@@ -28,7 +28,7 @@ namespace evolver {
     return *this;
   }
 
-  Coordinates *Character::getOrigin () {
+  Coordinates<float> *Character::getOrigin () {
     return this->origin;
   }
 
@@ -36,7 +36,7 @@ namespace evolver {
     return this->box;
   }
 
-  void Character::setOrigin (Coordinates *origin) {
+  void Character::setOrigin (Coordinates<float> *origin) {
     this->origin = origin;
 
     return;
