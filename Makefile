@@ -27,8 +27,8 @@ TARGET_FLAGS=$(SFML_FLAGS) $(GL_FLAGS) $(CXX_FLAGS)
 TARGET=$(BIN_PATH)/evolver
 MAIN=evolver.cpp
 BASE_FILES=Hitbox.o \
-	Character.o
-GL_FILES=CharacterGL.o
+	Actor.o
+GL_FILES=ActorGL.o
 O_FILES=$(BASE_FILES) $(GL_FILES)
 
 # Delete utility and target variables

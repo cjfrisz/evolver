@@ -1,17 +1,17 @@
-#ifndef __CHARACTER_H__
-#define __CHARACTER_H__
+#ifndef __ACTOR_H__
+#define __ACTOR_H__
 
 #include "Coordinates.h"
 #include "Hitbox.h"
 
 namespace evolver {
 
-  class Character {
+  class Actor {
   public:
-    Character (void);
-    ~Character (void);
-    Character (const Character &original);
-    Character &operator= (const Character &original);
+    Actor (void);
+    ~Actor (void);
+    Actor (const Actor &original);
+    Actor &operator= (const Actor &original);
 
     Coordinates<float> *getOrigin (void);
     Hitbox *getBox (void);

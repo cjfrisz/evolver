@@ -1,25 +1,25 @@
 #include "Coordinates.h"
 #include "Hitbox.h"
-#include "Character.h"
+#include "Actor.h"
 
 namespace evolver {
 
-  Character::Character () {
+  Actor::Actor () {
     this->origin = new Coordinates<float>();
     this->box = new Hitbox();
   }
 
-  Character::~Character () {
+  Actor::~Actor () {
     delete this->origin;
     delete this->box;
   }
 
-  Character::Character (const Character &original) {
+  Actor::Actor (const Actor &original) {
     *(this->origin) = *(original.origin);
     *(this->box) = *(original.box);
   }
 
-  Character &Character::operator= (const Character &original) {
+  Actor &Actor::operator= (const Actor &original) {
     if (this != &original) {
       *(this->origin) = *(original.origin);
       *(this->box) = *(original.box);
@@ -28,48 +28,48 @@ namespace evolver {
     return *this;
   }
 
-  Coordinates<float> *Character::getOrigin () {
+  Coordinates<float> *Actor::getOrigin () {
     return this->origin;
   }
 
-  Hitbox *Character::getBox () {
+  Hitbox *Actor::getBox () {
     return this->box;
   }
 
-  void Character::setOrigin (Coordinates<float> *origin) {
+  void Actor::setOrigin (Coordinates<float> *origin) {
     this->origin = origin;
 
     return;
   }
 
-  void Character::setBox (Hitbox *box) {
+  void Actor::setBox (Hitbox *box) {
     this->box = box;
 
     return;
   }
 
-  void Character::moveUp (int dist) {
+  void Actor::moveUp (int dist) {
     this->origin->setY(this->origin->getY() + dist);
     this->box->moveUp(dist);
     
     return;
   }
 
-  void Character::moveDown (int dist) {
+  void Actor::moveDown (int dist) {
     this->origin->setY(this->origin->getY() - dist);
     this->box->moveDown(dist);
     
     return;
   }
 
-  void Character::moveRight (int dist) {
+  void Actor::moveRight (int dist) {
     this->origin->setX(this->origin->getX() + dist);
     this->box->moveRight(dist);
         
     return;
   }
 
-  void Character::moveLeft (int dist) {
+  void Actor::moveLeft (int dist) {
     this->origin->setX(this->origin->getX() - dist);
     this->box->moveLeft(dist);
     

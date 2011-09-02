@@ -5,8 +5,8 @@
 // Includes OpenGL and GLU libraries
 #include <SFML/Window.hpp>
 
-#include "Character.h"
-#include "CharacterGL.h"
+#include "Actor.h"
+#include "ActorGL.h"
 #include "Coordinates.h"
 #include "Hitbox.h"
 
@@ -25,14 +25,14 @@ namespace evolver {
   const int BACKGROUND_COLOR4I[4] = { 255, 255, 255, 255 };
 
   // Game-related constants
-  // How far to move the character with each key press
+  // How far to move the actor with each key press
   const int MOVE_DIST = 5;
 
   // Window (via SFML) for the game
   sf::Window app;
 
-  // The character we'll be using for testing
-  CharacterGL *cgl;
+  // The actor we'll be using for testing
+  ActorGL *agl;
 
   // Functions used for initializing and running the game
   void quit (int code);
@@ -82,21 +82,21 @@ namespace evolver {
 
   void initGame (void) {
     Coordinates<float> *origin = new Coordinates<float>();
-    Character *character = new Character();
+    Actor *actor = new Actor();
     Hitbox *charBox = new Hitbox();
 
     origin->setX(0);
     origin->setY(0);
     
-    cgl = new CharacterGL();
+    agl = new ActorGL();
 
-    character->setOrigin(origin);
+    actor->setOrigin(origin);
 
-    charBox->setHeight(CHARACTER_SIZE);
-    charBox->setWidth(CHARACTER_SIZE);
-    character->setBox(charBox);
+    charBox->setHeight(ACTOR_SIZE);
+    charBox->setWidth(ACTOR_SIZE);
+    actor->setBox(charBox);
 
-    cgl->setCharacter(character);
+    agl->setActor(actor);
 
     return;
   }
@@ -105,16 +105,16 @@ namespace evolver {
     switch (code) 
       {
       case sf::Key::Up:
-	cgl->getCharacter()->moveUp(MOVE_DIST);
+	agl->getActor()->moveUp(MOVE_DIST);
 	break;
       case sf::Key::Down:
-	cgl->getCharacter()->moveDown(MOVE_DIST);
+	agl->getActor()->moveDown(MOVE_DIST);
 	break;
       case sf::Key::Left:
-	cgl->getCharacter()->moveLeft(MOVE_DIST);
+	agl->getActor()->moveLeft(MOVE_DIST);
 	break;
       case sf::Key::Right:
-	cgl->getCharacter()->moveRight(MOVE_DIST);
+	agl->getActor()->moveRight(MOVE_DIST);
 	break;
       case sf::Key::Escape:
       case sf::Key::Q:
@@ -134,7 +134,7 @@ namespace evolver {
 
     glLoadIdentity();
 
-    cgl->draw(true);
+    agl->draw(true);
     
     app.Display();
     
