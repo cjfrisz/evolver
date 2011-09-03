@@ -17,11 +17,11 @@ BIN_PATH=$(PROJ_PATH)
 # Compiler variables
 CXX=g++
 DEBUG_FLAGS=
-CXX_FLAGS=$(DEBUG_FLAGS) -std=c++0x -o
+CXX_FLAGS=$(DEBUG_FLAGS) -std=c++0x
 GL_FLAGS=-lGLU -lGL
 SFML_FLAGS=-lsfml-graphics -lsfml-window -lsfml-system
-O_FLAGS=$(DEBUG_FLAGS) -c
-TARGET_FLAGS=$(SFML_FLAGS) $(GL_FLAGS) $(CXX_FLAGS)
+O_FLAGS=$(DEBUG_FLAGS) $(CXX_FLAGS) -c
+TARGET_FLAGS=$(SFML_FLAGS) $(GL_FLAGS) $(CXX_FLAGS) -o
 
 # Source/target file variables
 TARGET=$(BIN_PATH)/evolver
