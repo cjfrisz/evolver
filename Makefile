@@ -16,7 +16,7 @@ BIN_PATH=$(PROJ_PATH)
 
 # Compiler variables
 CXX=g++
-DEBUG_FLAGS=
+DEBUG_FLAGS=-g
 CXX_FLAGS=$(DEBUG_FLAGS)
 GL_FLAGS=-lGLU -lGL
 SFML_FLAGS=-lsfml-graphics -lsfml-window -lsfml-system
