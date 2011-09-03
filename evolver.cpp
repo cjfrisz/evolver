@@ -5,6 +5,8 @@
 // Includes OpenGL and GLU libraries
 #include <SFML/Window.hpp>
 
+#include "Controller.h"
+#include "Config.h"
 #include "Actor.h"
 #include "ActorGL.h"
 #include "Coordinates.h"
@@ -12,12 +14,6 @@
 
 namespace evolver {
   
-  // Screen constants
-  const int SCREEN_WIDTH = 640;
-  const int SCREEN_HEIGHT = 480;
-  const int SCREEN_BPP = 32;
-  const unsigned long SCREEN_STYLE = sf::Style::Close;
-
   // Game window title
   const std::string TITLE = "Evolver early beta 0.01";
 
@@ -27,9 +23,16 @@ namespace evolver {
   // Game-related constants
   // How far to move the actor with each key press
   const int MOVE_DIST = 5;
+  const char *CONFIG_DEFAULT = "config.txt";
 
   // Window (via SFML) for the game
   sf::Window app;
+
+  // Configuration class
+  Config evolverConfig;
+
+  // The player's controller
+  Controller controller;
 
   // The actor we'll be using for testing
   ActorGL *agl;
@@ -40,7 +43,7 @@ namespace evolver {
   void initGL (void);
   void initGame (void);
   
-  void evolverKey (sf::Key::Code code);
+  void evolverKey (sf::Key::Code code, float timeElapsed);
   void evolverDraw (void);  
   void evolverEventLoop (void);
 
@@ -54,23 +57,31 @@ namespace evolver {
   void initSFML () {
     sf::WindowSettings settings;
 
-    
-    
-    app.Create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP),
+    app.Create(sf::VideoMode(evolverConfig.getScreenWidth(),
+			     evolverConfig.getScreenHeight(),
+			     evolverConfig.getColorDepth()),
 	       TITLE,
-	       SCREEN_STYLE,
+	       (evolverConfig.getFullscreen() ?
+		(sf::Style::Fullscreen) :
+		(sf::Style::Resize | sf::Style::Close)),
 	       settings);
 
     return;
   }
 
   void initGL (void) {
-    glViewport(0, 0, (GLsizei)SCREEN_WIDTH, (GLsizei)SCREEN_HEIGHT);
+    glViewport(0, 
+	       0, 
+	       (GLsizei)evolverConfig.getScreenWidth(), 
+	       (GLsizei)evolverConfig.getScreenHeight());
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     
-    gluOrtho2D(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT);
+    gluOrtho2D(0, 
+	       evolverConfig.getScreenWidth(), 
+	       0, 
+	       evolverConfig.getScreenHeight());
 
     glDisable(GL_DEPTH_TEST);
 
@@ -101,26 +112,14 @@ namespace evolver {
     return;
   }
 
-  void evolverKey (sf::Key::Code code) {
-    switch (code) 
-      {
-      case sf::Key::Up:
-	agl->getActor()->moveUp(MOVE_DIST);
-	break;
-      case sf::Key::Down:
-	agl->getActor()->moveDown(MOVE_DIST);
-	break;
-      case sf::Key::Left:
-	agl->getActor()->moveLeft(MOVE_DIST);
-	break;
-      case sf::Key::Right:
-	agl->getActor()->moveRight(MOVE_DIST);
-	break;
-      case sf::Key::Escape:
-      case sf::Key::Q:
-	quit(EXIT_SUCCESS);
-	break;
-      }
+  void evolverKey (sf::Key::Code code, float timeElapsed) {
+    if (code == evolverConfig.getKeyQuit()) {
+      quit(EXIT_SUCCESS);
+    }
+    else {
+      controller.handleControl(controller.controlToAction(code),
+			       timeElapsed);
+    }
 
     return;
   }
@@ -155,7 +154,7 @@ namespace evolver {
 	switch (event.Type) 
 	  {
 	  case sf::Event::KeyPressed:
-	    evolverKey(event.Key.Code);
+	    evolverKey(event.Key.Code, app.GetFrameTime());
 	    break;
 	  case sf::Event::Closed:
 	    done = true;
@@ -170,6 +169,39 @@ namespace evolver {
 }
 
 int main (int argc, char *argv[]) {
+  bool configSuccess;
+
+  configSuccess = 
+    evolver::evolverConfig.loadConfig(evolver::CONFIG_DEFAULT);
+  if (configSuccess == false) {
+    std::cerr << 
+      "Failed to load standard configuration file " <<
+      "\'" << evolver::CONFIG_DEFAULT << "\'" <<
+      std::endl;
+    std::cerr << "Generating new configuration file " <<
+      "and using default settings." <<
+      std::endl;
+
+    // Create a new configuration file
+    evolver::evolverConfig.writeConfig(evolver::CONFIG_DEFAULT);
+
+    // However, we're just going to use the defaults defined in
+    // Config.h
+  }
+
+  evolver::controller.
+    setControlActionPair(evolver::evolverConfig.getKeyUp(),
+			 evolver::UP);
+  evolver::controller.
+    setControlActionPair(evolver::evolverConfig.getKeyDown(),
+			 evolver::DOWN);
+  evolver::controller.
+    setControlActionPair(evolver::evolverConfig.getKeyLeft(),
+			 evolver::LEFT);
+  evolver::controller.
+    setControlActionPair(evolver::evolverConfig.getKeyRight(),
+			 evolver::RIGHT);
+
   evolver::initSFML();
   evolver::initGL();
   evolver::initGame();

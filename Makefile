@@ -17,17 +17,19 @@ BIN_PATH=$(PROJ_PATH)
 # Compiler variables
 CXX=g++
 DEBUG_FLAGS=
-CXX_FLAGS=$(DEBUG_FLAGS) -std=c++0x
+CXX_FLAGS=$(DEBUG_FLAGS)
 GL_FLAGS=-lGLU -lGL
 SFML_FLAGS=-lsfml-graphics -lsfml-window -lsfml-system
-O_FLAGS=$(DEBUG_FLAGS) $(CXX_FLAGS) -c
+O_FLAGS=$(CXX_FLAGS) -c
 TARGET_FLAGS=$(SFML_FLAGS) $(GL_FLAGS) $(CXX_FLAGS) -o
 
 # Source/target file variables
 TARGET=$(BIN_PATH)/evolver
 MAIN=evolver.cpp
 BASE_FILES=Hitbox.o \
-	Actor.o
+	Actor.o \
+	Config.o \
+	Controller.o
 GL_FILES=ActorGL.o
 O_FILES=$(BASE_FILES) $(GL_FILES)
 

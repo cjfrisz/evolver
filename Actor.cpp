@@ -28,12 +28,28 @@ namespace evolver {
     return *this;
   }
 
+  float Actor::getRunSpeed () {
+    return this->runSpeed;
+  }
+
   Coordinates<float> *Actor::getOrigin () {
     return this->origin;
   }
 
   Hitbox *Actor::getBox () {
     return this->box;
+  }
+
+  void Actor::setRunSpeed (float runSpeed) {
+    this->runSpeed = runSpeed;
+
+    return;
+  }
+
+  void Actor::changeRunSpeed (float speedChange) {
+    this->runSpeed += speedChange;
+    
+    return;
   }
 
   void Actor::setOrigin (Coordinates<float> *origin) {
