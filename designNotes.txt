@@ -33,6 +33,18 @@ Observer
 	reset).  
 
 Decorator
+	Using this pattern allows you to create objects that can wrap
+	a base type and retain the same type as the object
+	wrapped. The wrapper objects, or "decorations," are meant to
+	extend some functionality of the base object while still
+	calling methods in the base object to execute the
+	functionality. This seems most useful in instances where the
+	base type is concretely defined and shouldn't be altered.
+
+	In the case of evolver, I don't immediately see how this is
+	useful since the code is still relatively small and
+	flexible. I don't have anything that I'm married to and so I'm
+	still open to making concrete changes to things.
 
 Visitor 
 	The Visitor pattern (my personal favorite since I learned it
