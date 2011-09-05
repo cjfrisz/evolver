@@ -2,7 +2,7 @@
 # Makefile for Evolver project
 # Written by Chris Frisz
 # Created 15 Aug 2011
-# Last updated 2 Sept 2011
+# Last updated 5 Sept 2011
 ##################################################
 
 #----------VARIABLES----------#
@@ -16,7 +16,7 @@ BIN_PATH=$(PROJ_PATH)
 
 # Compiler variables
 CXX=g++
-DEBUG_FLAGS=-g
+DEBUG_FLAGS=
 CXX_FLAGS=$(DEBUG_FLAGS)
 GL_FLAGS=-lGLU -lGL
 SFML_FLAGS=-lsfml-graphics -lsfml-window -lsfml-system

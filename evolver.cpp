@@ -26,7 +26,7 @@ namespace evolver {
   const char *CONFIG_DEFAULT = "config.txt";
 
   // Window (via SFML) for the game
-  sf::Window app;
+  sf::Window evolver;
 
   // Configuration class
   Config evolverConfig;
@@ -48,7 +48,7 @@ namespace evolver {
   void evolverEventLoop (void);
 
   void quit (int code) {
-    app.Close();
+    evolver.Close();
     exit(code);
 
     return;
@@ -57,7 +57,7 @@ namespace evolver {
   void initSFML () {
     sf::WindowSettings settings;
 
-    app.Create(sf::VideoMode(evolverConfig.getScreenWidth(),
+    evolver.Create(sf::VideoMode(evolverConfig.getScreenWidth(),
 			     evolverConfig.getScreenHeight(),
 			     evolverConfig.getColorDepth()),
 	       TITLE,
@@ -107,6 +107,7 @@ namespace evolver {
     charBox->setWidth(ACTOR_SIZE);
     actor->setBox(charBox);
 
+    controller.setControlled(actor);
     agl->setActor(actor);
 
     return;
@@ -135,32 +136,39 @@ namespace evolver {
 
     agl->draw(true);
     
-    app.Display();
+    evolver.Display();
     
     return;
   }
 
   void evolverEventLoop (void) {
     bool done;
+    float elapsedTime;
     sf::Event event;
+    sf::Clock clock;
 
     done = false;
 
-    while (app.IsOpened()) {
+    while (evolver.IsOpened()) {
       
-      while ((done == false) && (app.GetEvent(event))) {
-	evolverDraw();
+      elapsedTime = clock.GetElapsedTime();
+      clock.Reset();
+      
+      while ((done == false) && (evolver.GetEvent(event))) {
 	
 	switch (event.Type) 
 	  {
 	  case sf::Event::KeyPressed:
-	    evolverKey(event.Key.Code, app.GetFrameTime());
+	    evolverKey(event.Key.Code, elapsedTime);
 	    break;
 	  case sf::Event::Closed:
 	    done = true;
 	    break;
 	  }
+      
       }
+
+      evolverDraw();
       
     }
 

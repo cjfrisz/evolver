@@ -6,7 +6,7 @@
 
 namespace evolver {
 
-  const int ACTOR_MAX_SPEED = 12;
+  const int ACTOR_MOVE_SPEED = 12;
 
   class Actor {
   public:
@@ -15,12 +15,12 @@ namespace evolver {
     Actor (const Actor &original);
     Actor &operator= (const Actor &original);
 
-    float getRunSpeed (void);
+    float getMoveSpeed (void);
     Coordinates<float> *getOrigin (void);
     Hitbox *getBox (void);
 
-    void setRunSpeed (float runSpeed);
-    void changeRunSpeed (float speedChange);
+    void setMoveSpeed (float moveSpeed);
+    void changeMoveSpeed (float speedChange);
     void setOrigin (Coordinates<float> *origin);
     void setBox (Hitbox *box);
 
@@ -30,7 +30,7 @@ namespace evolver {
     void moveLeft (int dist);
 
   private:
-    float runSpeed;
+    float moveSpeed;
     Coordinates<float> *origin;
     Hitbox *box;
   };

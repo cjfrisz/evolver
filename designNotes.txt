@@ -1,0 +1,57 @@
+Alrighty, I've been reading "Head First Design Patterns," and though
+it uses an awful lot of Java, there are some things that I've been
+thinking of while going through it where I can use certain design
+patterns for either existing or future features of evolver. It might
+be easiest to list by patterns I've looked into thus far.
+
+Strategy
+	It strikes me that Actors are going to have a bunch of
+	different behaviors from movement style to interactability to
+	how they're controlled. There should be some baseline
+	functionality like having a position and being able to set
+	that position. From there I should abstract any other behavior
+	so they're stored as interfaces in the Actor class and
+	specifically implemented by classes that implement their
+	respective interfaces.
+
+Observer
+	I would like to make changes in the configuration of the game
+	immediately reflected in the game, e.g. screen settings and
+	controls. This would be easiest to implement with the
+	configuration class as a subject and the respective areas of
+	the game affected by the settings as observers. That way any
+	time a setting was changed, the update method of the config
+	class would be called, and the observers would act accordingly
+
+	Of course this makes me realize that as it is the Config class
+	is a huge amalgamation of all the settings for the game. I
+	might want to redesign it so that there are separate Config
+	classes for each aspect of the game that can be
+	configured. That way only the affected aspect will be notified
+	and it'll be easier to keep the whole game from trying to
+	reset (i.e. changing a key binding won't cause the window to
+	reset).  
+
+Decorator
+
+Visitor 
+	The Visitor pattern (my personal favorite since I learned it
+	in C121 from Amr) allows for extension of behavior of a class
+	by building a "visitor" class for each type of action to be
+	performed with an overloaded "visit" method for each class on
+	which that action is performed. Any class on which operations
+	are to be performed includes an "accept" method that takes a
+	base "visitor" object as an argument. The "accept" method
+	should simply call the "visit" method of the visitor argument,
+	passing the "this" pointer of the object instance to the
+	visitor. The visitor class should provide a version of "visit"
+	for the specific object type (meaning that "visit" is
+	necessarily overloaded for it to be useful) that performs the
+	operations for the behavior. This allows for behavior
+	extension based on existing methods of a class without
+	modification to the class itself; rather it requires only
+	addition or creation of a new concrete Visitor (implementing
+	the Visitor interface).
+
+	It's probably fairly obvious at this point that I'm intending
+	to use this for adding functionality to Actors in evolver. 

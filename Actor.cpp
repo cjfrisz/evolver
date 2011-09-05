@@ -28,8 +28,8 @@ namespace evolver {
     return *this;
   }
 
-  float Actor::getRunSpeed () {
-    return this->runSpeed;
+  float Actor::getMoveSpeed () {
+    return this->moveSpeed;
   }
 
   Coordinates<float> *Actor::getOrigin () {
@@ -40,14 +40,14 @@ namespace evolver {
     return this->box;
   }
 
-  void Actor::setRunSpeed (float runSpeed) {
-    this->runSpeed = runSpeed;
+  void Actor::setMoveSpeed (float moveSpeed) {
+    this->moveSpeed = moveSpeed;
 
     return;
   }
 
-  void Actor::changeRunSpeed (float speedChange) {
-    this->runSpeed += speedChange;
+  void Actor::changeMoveSpeed (float speedChange) {
+    this->moveSpeed += speedChange;
     
     return;
   }
