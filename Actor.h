@@ -12,7 +12,8 @@ namespace evolver {
     Actor (const Actor &original);
     Actor &operator= (const Actor &original);
 
-    Coordinates<float> *getOrigin (void);
+    
+    
 
     void setOrigin (Coordinates<float> *origin);
 

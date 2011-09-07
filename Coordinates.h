@@ -1,5 +1,5 @@
-#ifndef __COORDINATES_H__
-#define __COORDINATES_H__
+#ifndef __POINT_H__
+#define __POINT_H__
 
 namespace evolver {
 
@@ -7,11 +7,11 @@ namespace evolver {
  *   CLASS DECLARATION	 *
  *************************/
   template <class T>
-  class Coordinates {
+  class Point {
   public:
-    Coordinates (void);
-    ~Coordinates (void);
-    Coordinates (const Coordinates &original);
+    Point (void);
+    ~Point (void);
+    Point (const Point &original);
 
     T getX (void);
     T getY (void);
@@ -33,53 +33,53 @@ namespace evolver {
  *************************/
 
   template <class T>
-  Coordinates<T>::Coordinates () {
+  Point<T>::Point () {
     this->x = 0;
     this->y = 0;
     this->z = 0;
   }
   
   template <class T>
-  Coordinates<T>::~Coordinates () {
+  Point<T>::~Point () {
     // Nothing to do yet
   }
 
   template <class T>
-  Coordinates<T>::Coordinates (const Coordinates &original) {
+  Point<T>::Point (const Point &original) {
     // Nothing to do yet
   }
 
   template <class T>
-  T Coordinates<T>::getX (void) {
+  T Point<T>::getX (void) {
     return this->x;
   }
 
   template <class T>
-  T Coordinates<T>::getY (void) {
+  T Point<T>::getY (void) {
     return this->y;
   }
 
   template <class T>
-  T Coordinates<T>::getZ (void) {
+  T Point<T>::getZ (void) {
     return this->z;
   }
 
   template <class T>
-  void Coordinates<T>::setX (T x) {
+  void Point<T>::setX (T x) {
     this->x = x;
 
     return;
   }
 
   template <class T>
-  void Coordinates<T>::setY (T y) {
+  void Point<T>::setY (T y) {
     this->y = y;
 
     return;
   }
 
   template <class T>
-  void Coordinates<T>::setZ (T z) {
+  void Point<T>::setZ (T z) {
     this->z = z;
 
     return;
