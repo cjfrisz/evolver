@@ -15,12 +15,12 @@ namespace evolver {
 
     Subject &operator= (const Subject &original);
 
-    subscribe (Listener listener);
-    unsubscribe (Listener listener);
-    notify (void);
+    void attach (Listener *listener);
+    void detach (Listener *listener);
+    void notify (void);
 
   private:
-    std::vector<Listener> *registeredListeners;
+    std::vector<Listener*> *attachedListeners;
   };
 
 }

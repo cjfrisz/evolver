@@ -5,9 +5,7 @@ namespace evolver {
   
   class Listener {
   public:
-    
-  private:
-    
+    virtual void update (void);
   };
 
 }
