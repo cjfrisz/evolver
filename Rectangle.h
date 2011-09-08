@@ -34,13 +34,13 @@ namespace evolver {
   };
 
   template <class T>
-  Rectangle::Rectangle (void) {
+  Rectangle::Rectangle () {
     this->bottomLeft = new Point<T>;
     this->topRight = new Point<T>;
   }
  
   template <class T>
-  Rectangle::~Rectangle (void) {
+  Rectangle::~Rectangle () {
     delete bottomLeft;
     delete topRight;
   }
@@ -62,7 +62,7 @@ namespace evolver {
   }
 
   template <class T>
-  T Rectangle::getWidth (void) {
+  T Rectangle::getWidth () {
     T width;
 
     width = (T)abs((this->topRight->getX()) - 
@@ -72,7 +72,7 @@ namespace evolver {
   }
 
   template <class T>
-  T Rectangle::getHeight (void) {
+  T Rectangle::getHeight () {
     T height;
 
     height = (T)abs((this->topRight->getY()) -
@@ -81,7 +81,67 @@ namespace evolver {
     return height;
   }
 
-  void Rectangle::setWidth (
+  template <class T>
+  void Rectangle::setWidth (T width) {
+    this->topRight->setX((this->bottomLeft->getX()) + width);
+
+    return;
+  }
+
+  template <class T>
+  void Rectangle::setHeight (T height) {
+    this->topRight->setY((this->bottomLeft->getY()) + height);
+
+    return;
+  }
+
+  LineSegment<T> getTop () {
+    LineSegment<T> top = LineSegment();
+
+    top.setEnd1X(this->bottomLeft->getX());
+    top.setEnd1Y(this->topRight->getY());
+
+    top.setEnd2X(this->topRight->getX());
+    top.setEnd2Y(this->topRight->getY());
+
+    return top;
+  }
+
+  LineSegment<T> getRight () {
+    LineSegment<T> right = LineSegment();
+
+    right.setEnd1X(this->topRight->getX());
+    right.setEnd1Y(this->topRight->getY());
+
+    right.setEnd2X(this->topRight->getX());
+    right.setEnd2Y(this->bottomLeft->getY());
+
+    return right;
+  }
+
+  LineSegment<T> getBottom () {
+    LineSegment<T> bottom = LineSegment();
+
+    bottom.setEnd1X(this->topRight->getX());
+    bottom.setEnd1Y(this->bottomLeft->getY());
+
+    bottom.setEnd2X(this->bottomLeft->getX());
+    bottom.setEnd2Y(this->bottomLeft->getY());
+
+    return bottom;
+  }
+
+  LineSegment<T> getLeft () {
+    LineSegment<T> left = LineSegment();
+
+    left.setEnd1X(this->bottomLeft->getX());
+    left.setEnd1Y(this->bottomLeft->getY());
+
+    left.setEnd2X(this->bottomLeft->getX());
+    left.setEnd2Y(this->topRight->getY());
+
+    return left;
+  }
 
 }
 
