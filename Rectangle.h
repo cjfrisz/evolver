@@ -3,8 +3,8 @@
 
 #inlude <cmath>
 
-#include "Point.h"
-#include "LineSegment.h"
+#include "Point2D.h"
+#include "Linesegment2D.h"
 
 namespace evolver {
 
@@ -25,20 +25,20 @@ namespace evolver {
 
     T getArea (void);
 
-    LineSegment<T> getTop (void);
-    LineSegment<T> getRight (void);
-    LineSegment<T> getBottom (void);
-    LineSegment<T> getLeft (void);
+    Linesegment2D<T> getTop (void);
+    Linesegment2D<T> getRight (void);
+    Linesegment2D<T> getBottom (void);
+    Linesegment2D<T> getLeft (void);
 
   private:
-    Point<T> *bottomLeft;
-    Point<T> *topRight;
+    Point2D<T> *bottomLeft;
+    Point2D<T> *topRight;
   };
 
   template <class T>
   Rectangle::Rectangle () {
-    this->bottomLeft = new Point<T>;
-    this->topRight = new Point<T>;
+    this->bottomLeft = new Point2D<T>;
+    this->topRight = new Point2D<T>;
   }
  
   template <class T>
@@ -106,8 +106,8 @@ namespace evolver {
     return;
   }
 
-  LineSegment<T> getTop () {
-    LineSegment<T> top = LineSegment();
+  Linesegment2D<T> getTop () {
+    Linesegment2D<T> top = Linesegment2D();
 
     top.setEnd1X(this->bottomLeft->getX());
     top.setEnd1Y(this->topRight->getY());
@@ -118,8 +118,8 @@ namespace evolver {
     return top;
   }
 
-  LineSegment<T> getRight () {
-    LineSegment<T> right = LineSegment();
+  Linesegment2D<T> getRight () {
+    Linesegment2D<T> right = Linesegment2D();
 
     right.setEnd1X(this->topRight->getX());
     right.setEnd1Y(this->topRight->getY());
@@ -130,8 +130,8 @@ namespace evolver {
     return right;
   }
 
-  LineSegment<T> getBottom () {
-    LineSegment<T> bottom = LineSegment();
+  Linesegment2D<T> getBottom () {
+    Linesegment2D<T> bottom = Linesegment2D();
 
     bottom.setEnd1X(this->topRight->getX());
     bottom.setEnd1Y(this->bottomLeft->getY());
@@ -142,8 +142,8 @@ namespace evolver {
     return bottom;
   }
 
-  LineSegment<T> getLeft () {
-    LineSegment<T> left = LineSegment();
+  Linesegment2D<T> getLeft () {
+    Linesegment2D<T> left = Linesegment2D();
 
     left.setEnd1X(this->bottomLeft->getX());
     left.setEnd1Y(this->bottomLeft->getY());
