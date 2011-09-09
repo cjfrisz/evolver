@@ -8,7 +8,7 @@ namespace evolver {
   class FallBehavior {
   public:
     FallBehavior (void);
-    ~FallBehavior (void);
+    virtual ~FallBehavior (void);
     FallBehavior (const FallBehavior &original);
 
     FallBehavior &operator= (const FallBehavior &original);

@@ -10,7 +10,6 @@
 #include "Actor.h"
 #include "ActorGL.h"
 #include "Coordinates.h"
-#include "Hitbox.h"
 
 namespace evolver {
   
@@ -22,7 +21,6 @@ namespace evolver {
 
   // Game-related constants
   // How far to move the actor with each key press
-  const int MOVE_DIST = 5;
   const char *CONFIG_DEFAULT = "config.txt";
 
   // Window (via SFML) for the game

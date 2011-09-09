@@ -1,6 +1,8 @@
 #include <cstdlib>
 #include <map>
 
+#include "Actor.h"
+#include "MoveBehavior.h"
 #include "Controller.h"
 
 namespace evolver {
@@ -61,27 +63,16 @@ namespace evolver {
     switch (action) 
       {
       case UP:
-	this->controlled->setRunSpeed(ACTOR_MAX_SPEED);
-	this->controlled->moveUp(this->controlled->getRunSpeed() * 
-				 timeElapsed);
+	this->controlled->getMoveBehavior()->moveUp(elapsedTime);
 	break;
       case DOWN:
-	this->controlled->setRunSpeed(ACTOR_MAX_SPEED);
-	this->controlled->moveDown(this->controlled->getRunSpeed() * 
-				   timeElapsed);
+	this->controlled->getMoveBehavior()->moveDown(elapsedTime);
 	break;
       case LEFT:
-	this->controlled->setRunSpeed(ACTOR_MAX_SPEED);
-	this->controlled->moveLeft(this->controlled->getRunSpeed() * 
-				   timeElapsed);
+	this->controlled->getMoveBehavior()->moveLeft(elapsedTime);
 	break;
       case RIGHT:
-	this->controlled->setRunSpeed(ACTOR_MAX_SPEED);
-	this->controlled->moveRight(this->controlled->getRunSpeed() * 
-				    timeElapsed);
-	break;
-      case STOP:
-	this->controlled->setRunSpeed(0);
+	this->controlled->getMoveBehavior()->moveRight(elapsedTime);
 	break;
       }
     

@@ -8,7 +8,7 @@ namespace evolver {
   class MoveBehavior {
   public:
     MoveBehavior (void);
-    ~MoveBehavior (void);
+    virtual ~MoveBehavior (void);
     MoveBehavior (const MoveBehavior &original);
 
     MoveBehavior &operator= (const MoveBehavior &original);
@@ -22,10 +22,11 @@ namespace evolver {
     virtual void moveLeft (float elapsedTime);
     virtual void moveRight (float elapsedTime);
 
+  protected:
+    void copyMoveBehavior (const MoveBehavior &original);
+
   private:
     Actor *actor;
-
-    void copyMoveBehavior (const MoveBehavior &original);
   };
 
 }

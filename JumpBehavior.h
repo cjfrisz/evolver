@@ -8,7 +8,7 @@ namespace evolver {
   class JumpBehavior {
   public:
     JumpBehavior (void);
-    ~JumpBehavior (void);
+    virtual ~JumpBehavior (void);
     JumpBehavior (const JumpBehavior &original);
 
     JumpBehavior &operator= (const JumpBehavior &original);
@@ -17,10 +17,13 @@ namespace evolver {
 
     void setActor (Actor *actor);
 
+    virtual void jump (void);
+
+  protected:
+    void copyJumpBehavior (const JumpBehavior &original);
+
   private:
     Actor *actor;
-
-    void copyJumpBehavior (const JumpBehavior &original);
   };
 
 }

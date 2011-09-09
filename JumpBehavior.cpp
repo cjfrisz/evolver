@@ -9,10 +9,6 @@ namespace evolver {
     this->actor = NULL;
   }
 
-  JumpBehavior::~JumpBehavior (void) {
-    // Nothing to do yet
-  }
-
   JumpBehavior::JumpBehavior (const JumpBehavior &original) {
     this->copyJumpBehavior(original);
   }

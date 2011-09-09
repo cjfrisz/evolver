@@ -8,10 +8,6 @@ namespace evolver {
     this->actor = NULL;
   }
 
-  MoveBehavior::~MoveBehavior (void) {
-    // Nothing to do yet
-  }
-
   MoveBehavior::MoveBehavior (const MoveBehavior &original) {
     this->copyMoveBehavior(original);
   }
