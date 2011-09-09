@@ -7,16 +7,16 @@
 
 namespace evolver {
   
-  enum ActorAction { UP, DOWN, LEFT, RIGHT, STOP, NOT_AN_ACTION };
+  enum ActorAction { UP, DOWN, LEFT, RIGHT, NOT_AN_ACTION };
 
   class Controller {
   public:
     Controller (void);
     ~Controller (void);
     Controller (const Controller &original);
+
     Controller &operator= (const Controller &original);
 
-    std::map<int, enum ActorAction> getControls (void);
     Actor *getControlled (void);
     enum ActorAction controlToAction (int control);
 
@@ -26,8 +26,10 @@ namespace evolver {
     void handleControl (enum ActorAction, float timeElapsed);
 
   private:
-    std::map<int, enum ActorAction> controls;
+    std::map<int, enum ActorAction> *controls;
     Actor *controlled;
+
+    void copyController (const Controller &original);
   };
 
 }

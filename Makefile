@@ -2,7 +2,7 @@
 # Makefile for Evolver project
 # Written by Chris Frisz
 # Created 15 Aug 2011
-# Last updated 5 Sept 2011
+# Last updated 9 Sept 2011
 ##################################################
 
 #----------VARIABLES----------#
@@ -26,8 +26,7 @@ TARGET_FLAGS=$(SFML_FLAGS) $(GL_FLAGS) $(CXX_FLAGS) -o
 # Source/target file variables
 TARGET=$(BIN_PATH)/evolver
 MAIN=evolver.cpp
-BASE_FILES=Hitbox.o \
-	Actor.o \
+BASE_FILES=Actor.o \
 	Config.o \
 	Controller.o
 GL_FILES=ActorGL.o
@@ -58,6 +57,10 @@ all : $(TARGET)
 # Build and run
 run : all
 	$(TARGET)
+
+# Add debug information
+debug : DEBUG_FLAGS=-g
+debug : $(TARGET)
 
 # Target
 $(TARGET) : $(MAIN) $(O_FILES)

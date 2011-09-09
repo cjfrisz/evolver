@@ -11,7 +11,12 @@ namespace evolver {
   public:
     Point (void);
     ~Point (void);
-    Point (const Point &original);
+    Point (const Point<T> &original);
+
+    Point Point::operator= (const Point<T> &original);
+
+    bool Point::operator== (const Point<T> &other) const;
+    bool Point::operator!= (const Point<T> &other) const;
 
     T getX (void);
     T getY (void);
@@ -25,6 +30,8 @@ namespace evolver {
     T x;
     T y;
     T z;
+
+    void copyPoint (const Point &original);
   };
 
 
@@ -46,7 +53,34 @@ namespace evolver {
 
   template <class T>
   Point<T>::Point (const Point &original) {
-    // Nothing to do yet
+    this->copyPoint();
+  }
+
+  Point<T> Point<T>::operator= (const Point &original) {
+    if (this != original) {
+      this->copyPoint();
+    }
+
+    return *this;
+  }
+
+  bool Point<T>::operator== (const Point &other) const {
+    bool equal;
+
+    if ((this->x == other->x) &&
+	(this->y == other->y) &&
+	(this->z == other->z)) {
+      equal = true;
+    }
+    else {
+      equal = false;
+    }
+
+    return equal;
+  }
+
+  bool Point<T>::operator!= (const Point &other) const {
+    return !(*this == other);
   }
 
   template <class T>
@@ -81,6 +115,15 @@ namespace evolver {
   template <class T>
   void Point<T>::setZ (T z) {
     this->z = z;
+
+    return;
+  }
+
+  template <class T>
+  void Point<T>::copyPoint (const Point<T> &original) {
+    this->x = original.x;
+    this->y = original.y;
+    this->z = original.z;
 
     return;
   }

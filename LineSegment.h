@@ -123,11 +123,13 @@ namespace evolver {
 
   template <class T>
   T LineSegment::length () {
-    T length;
+    double length;
 
-    length = abs(this->end2->getX() - this->end1->getX());
-    length += abs(this->end2->getY() - this->end1->getY());
-    length += abs(this->end2->getZ() - this->end1->getZ());
+    length = pow((this->end2->getX() - this->end1->getX()), 2);
+    length += pow((this->end2->getY() - this->end1->getY()), 2);
+    length += pow((this->end2->getZ() - this->end1->getZ()), 2);
+
+    length = sqrt(length);
 
     return (T)length;
   }

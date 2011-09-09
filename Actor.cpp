@@ -1,19 +1,34 @@
-#include "Coordinates.h"
-#include "Hitbox.h"
+#include <cstdlib>
+
+#include "Point.h"
 #include "Actor.h"
-#include "MoveBehavior.h"
+#include "FallBehavior.h"
 #include "JumpBehavior.h"
+#include "MoveBehavior.h"
 
 namespace evolver {
 
   Actor::Actor () {
     this->origin = new Coordinates<float>();
-    this->box = new Hitbox();
+    this->falling = NULL;
+    this->jumping = NULL;
+    this->moving = NULL;
   }
 
   Actor::~Actor () {
     delete this->origin;
-    delete this->box;
+
+    if (this->falling != NULL) {
+      delete this->falling;
+    }
+
+    if (this->jumping != NULL) {
+      delete this->jumping;
+    }
+
+    if (this->moving != NULL) {
+      delete this->moving;
+    }
   }
 
   Actor::Actor (const Actor &original) {
@@ -68,11 +83,11 @@ namespace evolver {
     return;
   }
 
-  void Actor::copyActor () {
-    *(this->origin) = *(original.origin);
-    *(this->box) = *(original.box);
-    *(this->moving) = *(original.moving);
-    *(this->jumping) = *(original.jumping);
+  void Actor::copyActor (const Actor &original) {
+    this->origin = original.origin;
+    this->falling = original.falling;
+    this->jumping = original.jumping;
+    this->moving = original.moving;
 
     return;
   }

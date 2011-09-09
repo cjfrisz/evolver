@@ -15,18 +15,21 @@ namespace evolver {
 
     float getActorOriginX (void);
     float getActorOriginY (void);
-    MoveBehavior *getMoveBehavior (void);
+    FallBehavior *getFallBehavior (void);
     JumpBehavior *getJumpBehavior (void);
+    MoveBehavior *getMoveBehavior (void);
 
     void setActorOriginX (float x);
     void setActorOriginY (float y);
-    void setMoveBehavior (MoveBehavior *moving);
+    void setFallBehavior (FallBehavior *falling);
     void setJumpBehavior (JumpBehavior *jumping);
+    void setMoveBehavior (MoveBehavior *moving);
 
   private:
-    Coordinates<float> *origin;
-    MoveBehavior *moving;
+    Point<float> *origin;
+    FallBehavior *falling;
     JumpBehavior *jumping;
+    MoveBehavior *moving;
 
     void copyActor (const Actor &original);
   };

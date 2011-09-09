@@ -1,0 +1,9 @@
+fullscreen = 0
+screen_width = 800
+screen_height = 600
+color_depth = 32
+UP = w
+DOWN = s
+LEFT = a
+RIGHT = d
+QUIT = q

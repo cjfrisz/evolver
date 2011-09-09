@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <map>
 
 #include "Controller.h"
@@ -5,27 +6,24 @@
 namespace evolver {
   
   Controller::Controller () {
+    this->control = new std::map<int, enum ActorAction>();
     this->controlled = NULL;
   }
 
   Controller::~Controller () {
-    // Nothing to do 
+    delete this->controls;
   }
 
   Controller::Controller (const Controller &original) {
-    this->controls = original.controls;
-    *(this->controlled) = *(original.controlled);
+    this->copyController(original);
   }
 
   Controller &Controller::operator= (const Controller &original) {
     if (this != &original) {
-      this->controls = original.controls;
-      *(this->controlled) = *(original.controlled);
+      this->copyController(original);
     }
-  }
 
-  std::map<int, enum ActorAction> Controller::getControls () {
-    return this->controls;
+    return *this;
   }
 
   Actor *Controller::getControlled () {
@@ -47,8 +45,7 @@ namespace evolver {
 
   void Controller::setControlActionPair (int control, 
 					 enum ActorAction action) {
-    this->controls.insert( std::pair<int, enum ActorAction>
-			   (control, action) );
+    *(this->controls)[control] = action;
 
     return;
   }
@@ -88,6 +85,13 @@ namespace evolver {
 	break;
       }
     
+    return;
+  }
+
+  void Controller::copyController (const Controller &original) {
+    this->controls = *(original.controls);
+    this->controlled = original.controlled;
+
     return;
   }
 
