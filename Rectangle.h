@@ -23,6 +23,8 @@ namespace evolver {
     void setWidth (T width);
     void setHeight (T height);
 
+    T getArea (void);
+
     LineSegment<T> getTop (void);
     LineSegment<T> getRight (void);
     LineSegment<T> getBottom (void);
@@ -79,6 +81,15 @@ namespace evolver {
 		    (this->bottomLeft->getY()));
 
     return height;
+  }
+
+  template <class T>
+  T Rectangle::getArea () {
+    T area;
+
+    area = this->width * this->height;
+
+    return area;
   }
 
   template <class T>
