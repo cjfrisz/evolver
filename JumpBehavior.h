@@ -17,7 +17,7 @@ namespace evolver {
 
     void setActor (Actor *actor);
 
-    virtual void jump (void);
+    virtual void jump (float TimeElapsed);
 
   protected:
     void copyJumpBehavior (const JumpBehavior &original);

@@ -16,6 +16,9 @@
 #include "NoFall.h"
 #include "NoJump.h"
 #include "NoMovement.h"
+#include "TextFall.h"
+#include "TextJump.h"
+#include "TextMove.h"
 
 namespace evolver {
   
@@ -36,7 +39,7 @@ namespace evolver {
   Config evolverConfig;
 
   // The player's controller
-  Controller controller;
+  Controller<sf::Key::Code> controller;
 
   // The actor we'll be using for testing
   ActorGL *agl;
@@ -97,9 +100,9 @@ namespace evolver {
 
   void initGame (void) {
     Actor *actor = new Actor();
-    FallBehavior *fall = new NoFall();
-    JumpBehavior *jump = new NoJump();
-    MoveBehavior *move = new NoMovement();
+    FallBehavior *fall = new TextFall();
+    JumpBehavior *jump = new TextJump();
+    MoveBehavior *move = new TextMove();
     
     actor->setActorOriginX(0);
     actor->setActorOriginY(0);
@@ -141,9 +144,8 @@ namespace evolver {
     bool done;
     float elapsedTime;
     sf::Event event;
-    std::map<int, enum ActorAction> *controls;
-    std::map<int, enum ActorAction>::iterator it;
-    sf::Key::Code curKey;
+    std::map<sf::Key::Code, enum ActorAction> *controls;
+    std::map<sf::Key::Code, enum ActorAction>::iterator it;
 
     done = false;
 
@@ -171,9 +173,7 @@ namespace evolver {
       // Loop over the controls and see if any of them are being
       // pressed
       for (it=controls->begin(); it != controls->end(); it++) {
-	curKey = (sf::Key::Code)(*it).first;
-
-	if (evolver.GetInput().IsKeyDown(curKey)) {
+	if (evolver.GetInput().IsKeyDown((*it).first)) {
 	  controller.handleControl((*it).second, 
 				   evolver.GetFrameTime());
 	}
@@ -206,16 +206,20 @@ int main (int argc, char *argv[]) {
   }
 
   evolver::controller.
-    setControlActionPair(evolver::evolverConfig.getKeyUp(),
+    setControlActionPair((sf::Key::Code)evolver::evolverConfig.
+			 getKeyUp(),
 			 evolver::UP);
   evolver::controller.
-    setControlActionPair(evolver::evolverConfig.getKeyDown(),
+    setControlActionPair((sf::Key::Code)evolver::evolverConfig.
+			 getKeyDown(),
 			 evolver::DOWN);
   evolver::controller.
-    setControlActionPair(evolver::evolverConfig.getKeyLeft(),
+    setControlActionPair((sf::Key::Code)evolver::evolverConfig.
+			 getKeyLeft(),
 			 evolver::LEFT);
   evolver::controller.
-    setControlActionPair(evolver::evolverConfig.getKeyRight(),
+    setControlActionPair((sf::Key::Code)evolver::evolverConfig.
+			 getKeyRight(),
 			 evolver::RIGHT);
   
   evolver::initSFML();

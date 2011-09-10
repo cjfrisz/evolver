@@ -17,7 +17,7 @@ namespace evolver {
 
     void setActor (Actor *actor);
 
-    virtual void fall (void);
+    virtual void fall (float timeElapsed);
 
   protected:
     void copyFallBehavior (const FallBehavior &original);

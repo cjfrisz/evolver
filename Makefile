@@ -27,10 +27,12 @@ TARGET_FLAGS=$(SFML_FLAGS) $(GL_FLAGS) $(CXX_FLAGS) -o
 TARGET=$(BIN_PATH)/evolver
 MAIN=evolver.cpp
 BASE_FILES=Config.o \
-	Controller.o \
 	NoFall.o \
 	NoJump.o \
 	NoMovement.o \
+	TextFall.o \
+	TextJump.o \
+	TextMove.o \
 	FallBehavior.o \
 	JumpBehavior.o \
 	Actor.o \

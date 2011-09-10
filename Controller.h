@@ -11,50 +11,51 @@ namespace evolver {
   
   enum ActorAction { UP, DOWN, LEFT, RIGHT, NOT_AN_ACTION };
 
-  template <class Key>
+  template <class K>
   class Controller {
   public:
     Controller (void);
     ~Controller (void);
-    Controller (const Controller &original);
+    Controller (const Controller<K> &original);
 
-    Controller &operator= (const Controller &original);
+    Controller<K> &operator= (const Controller<K> &original);
 
-    std::map<Key, enum ActorAction> *getControls (void);
+    std::map<K, enum ActorAction> *getControls (void);
     Actor *getControlled (void);
-    enum ActorAction controlToAction (Key control);
+    enum ActorAction controlToAction (K control);
 
-    void setControlActionPair (Key control, enum ActorAction action);
+    void setControlActionPair (K control, enum ActorAction action);
     void setControlled (Actor *controlled);
 
     void handleControl (enum ActorAction, float timeElapsed);
 
   protected:
-    void copyController (const Controller &original);
+    void copyController (const Controller<K> &original);
 
   private:
-    std::map<Key, enum ActorAction> *controls;
+    std::map<K, enum ActorAction> *controls;
     Actor *controlled;
   };
 
-  template <class Key>
-  Controller::Controller () {
-    this->controls = new std::map<Key, enum ActorAction>();
+  template <class K>
+  Controller<K>::Controller () {
+    this->controls = new std::map<K, enum ActorAction>();
     this->controlled = NULL;
   }
 
-  template <class Key>
-  Controller::~Controller () {
+  template <class K>
+  Controller<K>::~Controller () {
     delete this->controls;
   }
 
-  template <class Key>
-  Controller::Controller (const Controller &original) {
+  template <class K>
+  Controller<K>::Controller (const Controller<K> &original) {
     this->copyController(original);
   }
 
-  template <class Key>
-  Controller &Controller::operator= (const Controller &original) {
+  template <class K>
+  Controller<K> &Controller<K>::operator= 
+    (const Controller<K> &original) {
     if (this != &original) {
       this->copyController(original);
     }
@@ -62,18 +63,18 @@ namespace evolver {
     return *this;
   }
 
-  template <class Key>
-  std::map<Key, enum ActorAction> *Controller::getControls () {
+  template <class K>
+  std::map<K, enum ActorAction> *Controller<K>::getControls () {
     return this->controls;
   }
 
-  template <class Key>
-  Actor *Controller::getControlled () {
+  template <class K>
+  Actor *Controller<K>::getControlled () {
     return this->controlled;
   }
 
-  template <class Key>
-  enum ActorAction Controller::controlToAction (Key control) {
+  template <class K>
+  enum ActorAction Controller<K>::controlToAction (K control) {
     enum ActorAction action;
 
     if (this->controls->find(control) != this->controls->end()) {
@@ -86,25 +87,25 @@ namespace evolver {
     return action;
   }
 
-  template <class Key>
-  void Controller::setControlActionPair (Key control, 
+  template <class K>
+  void Controller<K>::setControlActionPair (K control, 
 					 enum ActorAction action) {
     this->controls->insert(this->controls->begin(), 
-			   std::pair<Key, enum ActorAction>(control, 
+			   std::pair<K, enum ActorAction>(control, 
 							    action));
 
     return;
   }
 
-  template <class Key>
-  void Controller::setControlled (Actor *controlled) {
+  template <class K>
+  void Controller<K>::setControlled (Actor *controlled) {
     this->controlled = controlled;
 
     return;
   }
 
-  template <class Key>
-  void Controller::handleControl (enum ActorAction action, 
+  template <class K>
+  void Controller<K>::handleControl (enum ActorAction action, 
 				  float timeElapsed) {
     switch (action) 
       {
@@ -125,8 +126,8 @@ namespace evolver {
     return;
   }
 
-  template <class Key>
-  void Controller::copyController (const Controller &original) {
+  template <class K>
+  void Controller<K>::copyController (const Controller<K> &original) {
     *(this->controls) = *(original.controls);
     this->controlled = original.controlled;
 
