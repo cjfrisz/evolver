@@ -1,9 +1,9 @@
 #ifndef __FALLBEHAVIOR_H__
 #define __FALLBEHAVIOR_H__
 
-#include "Actor.h"
-
 namespace evolver { 
+
+  class Actor;
 
   class FallBehavior {
   public:
@@ -11,7 +11,7 @@ namespace evolver {
     virtual ~FallBehavior (void);
     FallBehavior (const FallBehavior &original);
 
-    FallBehavior &operator= (const FallBehavior &original);
+    FallBehavior &operator= (const FallBehavior &rhs);
 
     Actor *getActor (void);
 
@@ -19,10 +19,11 @@ namespace evolver {
 
     virtual void fall (void);
 
+  protected:
+    void copyFallBehavior (const FallBehavior &original);
+
   private:
     Actor *actor;
-
-    void copyFallBehavior (const FallBehavior &original);
   };
 
 }

@@ -8,7 +8,6 @@ namespace evolver {
   const int ACTOR_SIZE = 30;
 
   const float ACTOR_COLOR3F[3] = { 0.5, 0.25, 0.25 };
-  const float DEBUG_HITBOX_COLOR3F[3] = { 0.25, 1.0, 0.25 };
 
   class ActorGL {
   public:
@@ -21,7 +20,7 @@ namespace evolver {
     
     void setActor (Actor *actor);
 
-    void draw (bool debug=false);
+    void draw (void);
 
   private:
     Actor *actor;

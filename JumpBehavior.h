@@ -1,9 +1,9 @@
 #ifndef __JUMPBEHAVIOR_H__
 #define __JUMPBEHAVIOR_H__
 
-#include "Actor.h"
-
 namespace evolver {
+
+  class Actor;
 
   class JumpBehavior {
   public:

@@ -1,6 +1,8 @@
 #ifndef __POINT2D_H__
 #define __POINT2D_H__
 
+#include <cmath>
+
 namespace evolver {
 
 /*************************
@@ -13,10 +15,10 @@ namespace evolver {
     ~Point2D (void);
     Point2D (const Point2D<T> &original);
 
-    Point2D Point2D::operator= (const Point2D<T> &original);
+    Point2D operator= (const Point2D<T> &original);
 
-    bool Point2D::operator== (const Point2D<T> &other) const;
-    bool Point2D::operator!= (const Point2D<T> &other) const;
+    bool operator== (const Point2D<T> &other) const;
+    bool operator!= (const Point2D<T> &other) const;
 
     T getX (void);
     T getY (void);
@@ -57,7 +59,8 @@ namespace evolver {
     this->copyPoint2D();
   }
 
-  Point2D<T> Point2D<T>::operator= (const Point2D &original) {
+  template <class T>
+  Point2D<T> Point2D<T>::operator= (const Point2D<T> &original) {
     if (this != original) {
       this->copyPoint2D();
     }
@@ -65,7 +68,8 @@ namespace evolver {
     return *this;
   }
 
-  bool Point2D<T>::operator== (const Point2D &other) const {
+  template <class T>
+  bool Point2D<T>::operator== (const Point2D<T> &other) const {
     bool equal;
 
     if ((this->x == other->x) &&
@@ -79,7 +83,8 @@ namespace evolver {
     return equal;
   }
 
-  bool Point2D<T>::operator!= (const Point2D &other) const {
+  template <class T>
+  bool Point2D<T>::operator!= (const Point2D<T> &other) const {
     return !(*this == other);
   }
 
@@ -107,6 +112,7 @@ namespace evolver {
     return;
   }
 
+  template <class T>
   T Point2D<T>::distance (const Point2D<T> &other) const {
     double dist;
 

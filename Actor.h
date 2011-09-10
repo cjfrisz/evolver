@@ -1,9 +1,13 @@
 #ifndef __ACTOR_H__
 #define __ACTOR_H__
 
-#include "Coordinates.h"
+#include "Point2D.h"
 
 namespace evolver {
+
+  class FallBehavior;
+  class JumpBehavior;
+  class MoveBehavior;
 
   class Actor {
   public:
@@ -26,7 +30,7 @@ namespace evolver {
     void setMoveBehavior (MoveBehavior *moving);
 
   private:
-    Point<float> *origin;
+    Point2D<float> *origin;
     FallBehavior *falling;
     JumpBehavior *jumping;
     MoveBehavior *moving;

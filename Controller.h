@@ -25,11 +25,13 @@ namespace evolver {
 
     void handleControl (enum ActorAction, float timeElapsed);
 
+  protected:
+    void copyController (const Controller &original);
+
   private:
     std::map<int, enum ActorAction> *controls;
     Actor *controlled;
 
-    void copyController (const Controller &original);
   };
 
 }

@@ -40,7 +40,7 @@ namespace evolver {
     return;
   }
 
-  void ActorGL::draw (bool debug) {   
+  void ActorGL::draw (void) {   
     glColor3fv(ACTOR_COLOR3F);
 
     glBegin(GL_QUADS);
@@ -57,27 +57,6 @@ namespace evolver {
 			ACTOR_SIZE), 
 		       this->actor->getOrigin()->getY());    
     glEnd();
-
-    if ((debug == true) && (this->actor->getBox() != NULL)) {
-      // I hate mid-function declaration, but this'll save memory
-      Coordinates<float> lowerLeft = 
-	this->actor->getBox()->getLowerLeft();
-      Coordinates<float> lowerRight = 
-	this->actor->getBox()->getLowerRight();
-      Coordinates<float> upperRight = 
-	this->actor->getBox()->getUpperRight();
-      Coordinates<float> upperLeft = 
-	this->actor->getBox()->getUpperLeft();
-
-      glColor3fv(DEBUG_HITBOX_COLOR3F);
-
-      glBegin(GL_LINE_LOOP);
-	      glVertex2i(lowerLeft.getX(), lowerLeft.getY());
-	      glVertex2i(lowerRight.getX(), lowerRight.getY());
-	      glVertex2i(upperRight.getX(), upperRight.getY());
-	      glVertex2i(upperLeft.getX(), upperRight.getY());
-      glEnd();
-    }
 
     return;
   }

@@ -80,7 +80,7 @@ namespace evolver {
   }
 
   void Controller::copyController (const Controller &original) {
-    this->controls = *(original.controls);
+    *(this->controls) = *(original.controls);
     this->controlled = original.controlled;
 
     return;

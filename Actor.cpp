@@ -1,6 +1,6 @@
 #include <cstdlib>
 
-#include "Point.h"
+#include "Point2D.h"
 #include "Actor.h"
 #include "FallBehavior.h"
 #include "JumpBehavior.h"
@@ -9,7 +9,7 @@
 namespace evolver {
 
   Actor::Actor () {
-    this->origin = new Coordinates<float>();
+    this->origin = new Point2D<float>();
     this->falling = NULL;
     this->jumping = NULL;
     this->moving = NULL;

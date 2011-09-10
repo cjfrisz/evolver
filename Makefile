@@ -28,7 +28,15 @@ TARGET=$(BIN_PATH)/evolver
 MAIN=evolver.cpp
 BASE_FILES=Actor.o \
 	Config.o \
-	Controller.o
+	Controller.o \
+	FallBehavior.o \
+	JumpBehavior.o \
+	MoveBehavior.o \
+	NoFall.o \
+	NoJump.o \
+	NoMovement.o \
+	Player.o \
+	Subject.o
 GL_FILES=ActorGL.o
 O_FILES=$(BASE_FILES) $(GL_FILES)
 

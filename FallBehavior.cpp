@@ -11,9 +11,9 @@ namespace evolver {
     this->copyFallBehavior(original);
   }
 
-  FallBehavior &FallBehavior::operator= (const FallBehavior &original) {
-    if (this != original) {
-      this->copyFallBehavior(original);
+  FallBehavior &FallBehavior::operator= (const FallBehavior &rhs) {
+    if (this != rhs) {
+      this->copyFallBehavior(rhs);
     }
 
     return this;

@@ -90,20 +90,12 @@ namespace evolver {
   }
 
   void initGame (void) {
-    Coordinates<float> *origin = new Coordinates<float>();
     Actor *actor = new Actor();
-    Hitbox *charBox = new Hitbox();
-
-    origin->setX(0);
-    origin->setY(0);
+    
+    actor->setActorOriginX(0);
+    actor->setActorOriginY(0);
     
     agl = new ActorGL();
-
-    actor->setOrigin(origin);
-
-    charBox->setHeight(ACTOR_SIZE);
-    charBox->setWidth(ACTOR_SIZE);
-    actor->setBox(charBox);
 
     controller.setControlled(actor);
     agl->setActor(actor);

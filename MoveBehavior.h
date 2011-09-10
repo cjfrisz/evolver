@@ -1,9 +1,9 @@
 #ifndef __MOVEBEHAVIOR_H__
 #define __MOVEBEHAVIOR_H__
 
-#include "Actor.h"
-
 namespace evolver {
+
+  class Actor;
 
   class MoveBehavior {
   public:
