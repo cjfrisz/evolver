@@ -2,11 +2,12 @@
 #include <algorithm>
 
 #include "Listener.h"
+#include "Subject.h"
 
 namespace evolver {
   
   Subject::Subject () {
-    this->attachedListeners = new std::vector<Listner>;
+    this->attachedListeners = new std::vector<Listener*>();
   }
 
   Subject::~Subject () {
@@ -17,24 +18,24 @@ namespace evolver {
     *(this->attachedListeners) = *(original.attachedListeners);
   }
 
-  Subject &Subject::operator= (const Subject &original) {
-    if (this != original) {
-      *(this->attachedListeners) = *(original.attachedListeners);
+  Subject &Subject::operator= (const Subject &rhs) {
+    if (this != &rhs) {
+      *(this->attachedListeners) = *(rhs.attachedListeners);
     }
 
-    return this;
+    return *this;
   }
 
   void Subject::attach (Listener *listener) {
     std::vector<Listener*>::iterator elmnt;
 
-    elmnt = std::find(this->attachedListeners.begin(),
-		      this->attachedListeners.end(),
+    elmnt = std::find(this->attachedListeners->begin(),
+		      this->attachedListeners->end(),
 		      listener);
 
     // Only attach the listener if it's not already attached
-    if (*elmnt == this->attachedListeners.end()) {
-      this->attachedListeners.push_back(listener);
+    if (elmnt == this->attachedListeners->end()) {
+      this->attachedListeners->push_back(listener);
     }
     else {
       // The listener was attached already
@@ -51,8 +52,8 @@ namespace evolver {
 		      listener);
 
     // Only need to detach if the listener is attached
-    if (*elmnt != this->attachedListeners.end()) {
-      this->attachedListeners.erase(elmnt);
+    if (elmnt != this->attachedListeners->end()) {
+      this->attachedListeners->erase(elmnt);
     }
     else {
       // The listener wasn't attached

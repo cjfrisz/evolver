@@ -8,7 +8,7 @@
 namespace evolver {
   
   Controller::Controller () {
-    this->control = new std::map<int, enum ActorAction>();
+    this->controls = new std::map<int, enum ActorAction>();
     this->controlled = NULL;
   }
 
@@ -35,8 +35,8 @@ namespace evolver {
   enum ActorAction Controller::controlToAction (int control) {
     enum ActorAction action;
 
-    if (this->controls.find(control) != this->controls.end()) {
-      action = this->controls[ control ];
+    if (this->controls->find(control) != this->controls->end()) {
+      action = this->controls->find(control)->second;
     }
     else {
       action = NOT_AN_ACTION;
@@ -47,7 +47,9 @@ namespace evolver {
 
   void Controller::setControlActionPair (int control, 
 					 enum ActorAction action) {
-    *(this->controls)[control] = action;
+    this->controls->insert(this->controls->begin(), 
+			   std::pair<int, enum ActorAction>(control, 
+							    action));
 
     return;
   }
@@ -63,16 +65,16 @@ namespace evolver {
     switch (action) 
       {
       case UP:
-	this->controlled->getMoveBehavior()->moveUp(elapsedTime);
+	this->controlled->getMoveBehavior()->moveUp(timeElapsed);
 	break;
       case DOWN:
-	this->controlled->getMoveBehavior()->moveDown(elapsedTime);
+	this->controlled->getMoveBehavior()->moveDown(timeElapsed);
 	break;
       case LEFT:
-	this->controlled->getMoveBehavior()->moveLeft(elapsedTime);
+	this->controlled->getMoveBehavior()->moveLeft(timeElapsed);
 	break;
       case RIGHT:
-	this->controlled->getMoveBehavior()->moveRight(elapsedTime);
+	this->controlled->getMoveBehavior()->moveRight(timeElapsed);
 	break;
       }
     

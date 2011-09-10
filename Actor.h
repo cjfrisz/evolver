@@ -28,13 +28,14 @@ namespace evolver {
     void setJumpBehavior (JumpBehavior *jumping);
     void setMoveBehavior (MoveBehavior *moving);
 
+  protected:
+    void copyActor (const Actor &original);
+
   private:
     Point2D<float> *origin;
     FallBehavior *falling;
     JumpBehavior *jumping;
     MoveBehavior *moving;
-
-    void copyActor (const Actor &original);
   };
 
 }

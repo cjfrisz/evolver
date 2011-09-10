@@ -51,6 +51,10 @@ namespace evolver {
     return this->origin->getY();
   }
 
+  FallBehavior *Actor::getFallBehavior () {
+    return this->falling;
+  }
+
   MoveBehavior *Actor::getMoveBehavior () {
     return this->moving;
   }
@@ -67,6 +71,12 @@ namespace evolver {
 
   void Actor::setActorOriginY (float y) {
     this->origin->setY(y);
+
+    return;
+  }
+
+  void Actor::setFallBehavior (FallBehavior *falling) {
+    this->falling = falling;
 
     return;
   }

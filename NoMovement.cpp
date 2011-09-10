@@ -4,9 +4,8 @@
 
 namespace evolver {
   
-  NoMovement::NoMovement () 
-    : actor( NULL ) {
-    // Nothing to do yet
+  NoMovement::NoMovement () {
+    this->setActor(NULL);
   }
 
   NoMovement::~NoMovement () {

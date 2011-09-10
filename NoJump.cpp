@@ -4,9 +4,8 @@
 
 namespace evolver {
 
-  NoJump::NoJump () 
-    : actor( NULL ) {
-    // Nothing to do yet
+  NoJump::NoJump () {
+    this->setActor(NULL);
   }
 
   NoJump::~NoJump () {
@@ -18,7 +17,7 @@ namespace evolver {
   }
 
   NoJump &NoJump::operator= (const NoJump &rhs) {
-    if (this != rhs) {
+    if (this != &rhs) {
       this->copyNoJump(rhs);
     }
 

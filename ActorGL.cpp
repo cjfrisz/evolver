@@ -44,18 +44,18 @@ namespace evolver {
     glColor3fv(ACTOR_COLOR3F);
 
     glBegin(GL_QUADS);
-	    glVertex2i(this->actor->getOrigin()->getX(), 
-		       this->actor->getOrigin()->getY());
-	    glVertex2i(this->actor->getOrigin()->getX(),
-		       (this->actor->getOrigin()->getY() + 
+	    glVertex2i(this->actor->getActorOriginX(), 
+		       this->actor->getActorOriginY());
+	    glVertex2i(this->actor->getActorOriginX(),
+		       (this->actor->getActorOriginY() + 
 			ACTOR_SIZE));
-	    glVertex2i((this->actor->getOrigin()->getX() + 
+	    glVertex2i((this->actor->getActorOriginX() + 
 			ACTOR_SIZE), 
-		       (this->actor->getOrigin()->getY() + 
+		       (this->actor->getActorOriginY() + 
 			ACTOR_SIZE));
-	    glVertex2i((this->actor->getOrigin()->getX() + 
+	    glVertex2i((this->actor->getActorOriginX() + 
 			ACTOR_SIZE), 
-		       this->actor->getOrigin()->getY());    
+		       this->actor->getActorOriginY());    
     glEnd();
 
     return;

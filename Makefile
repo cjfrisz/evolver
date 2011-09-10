@@ -26,16 +26,15 @@ TARGET_FLAGS=$(SFML_FLAGS) $(GL_FLAGS) $(CXX_FLAGS) -o
 # Source/target file variables
 TARGET=$(BIN_PATH)/evolver
 MAIN=evolver.cpp
-BASE_FILES=Actor.o \
-	Config.o \
+BASE_FILES=Config.o \
 	Controller.o \
-	FallBehavior.o \
-	JumpBehavior.o \
-	MoveBehavior.o \
 	NoFall.o \
 	NoJump.o \
 	NoMovement.o \
-	Player.o \
+	FallBehavior.o \
+	JumpBehavior.o \
+	Actor.o \
+	MoveBehavior.o \
 	Subject.o
 GL_FILES=ActorGL.o
 O_FILES=$(BASE_FILES) $(GL_FILES)

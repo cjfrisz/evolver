@@ -1,10 +1,12 @@
+#include <cstdlib>
+
 #include "Actor.h"
 #include "FallBehavior.h"
 
 namespace evolver {
 
   FallBehavior::FallBehavior () {
-    this->actor = NULL
+    this->actor = NULL;
   }
 
   FallBehavior::FallBehavior (const FallBehavior &original) {
@@ -12,11 +14,11 @@ namespace evolver {
   }
 
   FallBehavior &FallBehavior::operator= (const FallBehavior &rhs) {
-    if (this != rhs) {
+    if (this != &rhs) {
       this->copyFallBehavior(rhs);
     }
 
-    return this;
+    return *this;
   }
 
   Actor *FallBehavior::getActor () {
@@ -29,7 +31,7 @@ namespace evolver {
     return;
   }
 
-  void FallBehavior:;copyFallBehavior (const FallBehavior &original) {
+  void FallBehavior::copyFallBehavior (const FallBehavior &original) {
     this->actor = NULL;
 
     return;

@@ -14,11 +14,11 @@ namespace evolver {
   }
 
   JumpBehavior &JumpBehavior::operator= (const JumpBehavior &original) {
-    if (this != original) {
+    if (this != &original) {
       this->copyJumpBehavior(original);
     }
 
-    return this;
+    return *this;
   }
 
   Actor *JumpBehavior::getActor () {

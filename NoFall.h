@@ -1,9 +1,11 @@
 #ifndef __NOFALL_H__
 #define __NOFALL_H__
 
-namespace evolver {
+#include <cstdlib>
 
-  class FallBehavior;
+#include "FallBehavior.h"
+
+namespace evolver {
 
   class NoFall : public FallBehavior {
   public:

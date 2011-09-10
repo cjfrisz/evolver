@@ -5,11 +5,17 @@
 // Includes OpenGL and GLU libraries
 #include <SFML/Window.hpp>
 
+#include "Point2D.h"
 #include "Controller.h"
 #include "Config.h"
 #include "Actor.h"
 #include "ActorGL.h"
-#include "Coordinates.h"
+#include "FallBehavior.h"
+#include "JumpBehavior.h"
+#include "MoveBehavior.h"
+#include "NoFall.h"
+#include "NoJump.h"
+#include "NoMovement.h"
 
 namespace evolver {
   
@@ -91,9 +97,15 @@ namespace evolver {
 
   void initGame (void) {
     Actor *actor = new Actor();
+    NoFall *fall = new NoFall();
+    NoJump *jump = new NoJump();
+    NoMovement *move = new NoMovement();
     
     actor->setActorOriginX(0);
     actor->setActorOriginY(0);
+    actor->setFallBehavior(fall);
+    actor->setJumpBehavior(jump);
+    actor->setMoveBehavior(move);
     
     agl = new ActorGL();
 
@@ -124,7 +136,7 @@ namespace evolver {
 
     glLoadIdentity();
 
-    agl->draw(true);
+    agl->draw();
     
     evolver.Display();
     

@@ -1,10 +1,11 @@
+#include <cstdlib>
+
 #include "NoFall.h"
 
 namespace evolver {
 
-  NoFall::NoFall ()
-    : actor( NULL ) {
-    // Nothing to do yet
+  NoFall::NoFall () {
+    this->setActor(NULL);
   }
 
   NoFall::~NoFall () {

@@ -12,12 +12,12 @@ namespace evolver {
     this->copyMoveBehavior(original);
   }
 
-  MoveBehavior &MoveBehavior::operator= (const MoveBehavior &original) {
-    if (this != original) {
-      this->copyMoveBehavior(original);
+  MoveBehavior &MoveBehavior::operator= (const MoveBehavior &rhs) {
+    if (this != &rhs) {
+      this->copyMoveBehavior(rhs);
     }
 
-    return this;
+    return *this;
   }
 
   Actor *MoveBehavior::getActor () {
