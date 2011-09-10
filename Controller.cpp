@@ -28,6 +28,10 @@ namespace evolver {
     return *this;
   }
 
+  std::map<int, enum ActorAction> *Controller::getControls () {
+    return this->controls;
+  }
+
   Actor *Controller::getControlled () {
     return this->controlled;
   }

@@ -116,8 +116,7 @@ namespace evolver {
   }
 
   void evolverKey (sf::Key::Code code, float timeElapsed) {
-    controller.handleControl(controller.controlToAction(code),
-			     timeElapsed);
+    
 
     return;
   }
@@ -142,6 +141,9 @@ namespace evolver {
     bool done;
     float elapsedTime;
     sf::Event event;
+    std::map<int, enum ActorAction> *controls;
+    std::map<int, enum ActorAction>::iterator it;
+    sf::Key::Code curKey;
 
     done = false;
 
@@ -149,21 +151,32 @@ namespace evolver {
       
       while (evolver.GetEvent(event)) {
 	
-	switch (event.Type) 
-	  {
+	switch (event.Type) {
 	  case sf::Event::KeyPressed:
 	    if (event.Key.Code == evolverConfig.getKeyQuit()) {
 	      done = true;
-	    }
-	    else {
-	      evolverKey(event.Key.Code, elapsedTime);
 	    }
 	    break;
 	  case sf::Event::Closed:
 	    done = true;
 	    break;
-	  }
-      
+	}
+	
+      }
+
+      /* Handle controls */
+      // Get the map of controls
+      controls = controller.getControls();
+
+      // Loop over the controls and see if any of them are being
+      // pressed
+      for (it=controls->begin(); it != controls->end(); it++) {
+	curKey = (sf::Key::Code)(*it).first;
+
+	if (evolver.GetInput().IsKeyDown(curKey)) {
+	  controller.handleControl((*it).second, 
+				   evolver.GetFrameTime());
+	}
       }
 
       evolverDraw();
@@ -190,25 +203,7 @@ int main (int argc, char *argv[]) {
 
     // Create a new configuration file
     evolver::evolverConfig.writeConfig(evolver::CONFIG_DEFAULT);
-
-    // However, we're just going to use the defaults defined in
-    // Config.h
   }
-
-  std::cout << "Quit key: " << evolver::evolverConfig.getKeyQuit() <<
-    std::endl;
-
-  std::cout << "Up key: " << evolver::evolverConfig.getKeyUp() <<
-    std::endl;
-
-  std::cout << "Down key: " << evolver::evolverConfig.getKeyDown() <<
-    std::endl;
-
-  std::cout << "Left key: " << evolver::evolverConfig.getKeyLeft() <<
-    std::endl;
-
-  std::cout << "Right key: " << evolver::evolverConfig.getKeyRight() <<
-    std::endl;
 
   evolver::controller.
     setControlActionPair(evolver::evolverConfig.getKeyUp(),
