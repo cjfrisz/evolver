@@ -187,11 +187,12 @@ namespace evolver {
       config << "fullscreen" << SEPARATOR << this->fullscreen;
       config << "screenWidth" << SEPARATOR << this->screenWidth;
       config << "screenHeight" << SEPARATOR << this->screenHeight;
-      config << "colorDepth" << SEPARATOR << this->colorDepth;
-      config << "keyUp" << SEPARATOR << this->keyUp;
-      config << "keyDown" << SEPARATOR << this->keyDown;
-      config << "keyLeft" << SEPARATOR << this->keyLeft;
-      config << "keyRight" << SEPARATOR << this->keyRight;
+      config << "color_depth" << SEPARATOR << this->colorDepth;
+      config << "UP" << SEPARATOR << this->keyUp;
+      config << "DOWN" << SEPARATOR << this->keyDown;
+      config << "LEFT" << SEPARATOR << this->keyLeft;
+      config << "RIGHT" << SEPARATOR << this->keyRight;
+      config << "QUIT" << SEPARATOR << this->keyQuit;
 
       config.close();
 

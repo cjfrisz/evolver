@@ -4,8 +4,12 @@
 
 namespace evolver {
   
-  MoveBehavior::MoveBehavior (void) {
+  MoveBehavior::MoveBehavior () {
     this->actor = NULL;
+  }
+
+  MoveBehavior::~MoveBehavior () {
+    // Nothing to do yet
   }
 
   MoveBehavior::MoveBehavior (const MoveBehavior &original) {
@@ -29,6 +33,14 @@ namespace evolver {
 
     return;
   }
+
+  void MoveBehavior::moveUp (float elapsedTime) { }
+  
+  void MoveBehavior::moveDown (float elapsedTime) { }
+
+  void MoveBehavior::moveLeft (float elapsedTime) { }
+
+  void MoveBehavior::moveRight (float elapsedTime) { }
 
   void MoveBehavior::copyMoveBehavior (const MoveBehavior &original) {
     this->actor = NULL;

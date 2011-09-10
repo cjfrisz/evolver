@@ -97,9 +97,9 @@ namespace evolver {
 
   void initGame (void) {
     Actor *actor = new Actor();
-    NoFall *fall = new NoFall();
-    NoJump *jump = new NoJump();
-    NoMovement *move = new NoMovement();
+    FallBehavior *fall = new NoFall();
+    JumpBehavior *jump = new NoJump();
+    MoveBehavior *move = new NoMovement();
     
     actor->setActorOriginX(0);
     actor->setActorOriginY(0);
@@ -116,13 +116,8 @@ namespace evolver {
   }
 
   void evolverKey (sf::Key::Code code, float timeElapsed) {
-    if (code == evolverConfig.getKeyQuit()) {
-      quit(EXIT_SUCCESS);
-    }
-    else {
-      controller.handleControl(controller.controlToAction(code),
-			       timeElapsed);
-    }
+    controller.handleControl(controller.controlToAction(code),
+			     timeElapsed);
 
     return;
   }
@@ -147,21 +142,22 @@ namespace evolver {
     bool done;
     float elapsedTime;
     sf::Event event;
-    sf::Clock clock;
 
     done = false;
 
-    while (evolver.IsOpened()) {
+    while (done == false) {
       
-      elapsedTime = clock.GetElapsedTime();
-      clock.Reset();
-      
-      while ((done == false) && (evolver.GetEvent(event))) {
+      while (evolver.GetEvent(event)) {
 	
 	switch (event.Type) 
 	  {
 	  case sf::Event::KeyPressed:
-	    evolverKey(event.Key.Code, elapsedTime);
+	    if (event.Key.Code == evolverConfig.getKeyQuit()) {
+	      done = true;
+	    }
+	    else {
+	      evolverKey(event.Key.Code, elapsedTime);
+	    }
 	    break;
 	  case sf::Event::Closed:
 	    done = true;
@@ -199,6 +195,21 @@ int main (int argc, char *argv[]) {
     // Config.h
   }
 
+  std::cout << "Quit key: " << evolver::evolverConfig.getKeyQuit() <<
+    std::endl;
+
+  std::cout << "Up key: " << evolver::evolverConfig.getKeyUp() <<
+    std::endl;
+
+  std::cout << "Down key: " << evolver::evolverConfig.getKeyDown() <<
+    std::endl;
+
+  std::cout << "Left key: " << evolver::evolverConfig.getKeyLeft() <<
+    std::endl;
+
+  std::cout << "Right key: " << evolver::evolverConfig.getKeyRight() <<
+    std::endl;
+
   evolver::controller.
     setControlActionPair(evolver::evolverConfig.getKeyUp(),
 			 evolver::UP);
@@ -211,7 +222,7 @@ int main (int argc, char *argv[]) {
   evolver::controller.
     setControlActionPair(evolver::evolverConfig.getKeyRight(),
 			 evolver::RIGHT);
-
+  
   evolver::initSFML();
   evolver::initGL();
   evolver::initGame();

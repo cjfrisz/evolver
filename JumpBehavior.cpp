@@ -5,8 +5,12 @@
 
 namespace evolver {
 
-  JumpBehavior::JumpBehavior (void) {
+  JumpBehavior::JumpBehavior () {
     this->actor = NULL;
+  }
+
+  JumpBehavior::~JumpBehavior () {
+    // Nothing to do yet
   }
 
   JumpBehavior::JumpBehavior (const JumpBehavior &original) {
@@ -30,6 +34,8 @@ namespace evolver {
 
     return;
   }
+
+  void JumpBehavior::jump () { }
 
   void JumpBehavior::copyJumpBehavior (const JumpBehavior &original) {
     this->actor = NULL;

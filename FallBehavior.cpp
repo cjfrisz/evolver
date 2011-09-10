@@ -9,6 +9,10 @@ namespace evolver {
     this->actor = NULL;
   }
 
+  FallBehavior::~FallBehavior () {
+    // Nothing to do
+  }
+
   FallBehavior::FallBehavior (const FallBehavior &original) {
     this->copyFallBehavior(original);
   }
@@ -30,6 +34,8 @@ namespace evolver {
 
     return;
   }
+
+  void FallBehavior::fall () { }
 
   void FallBehavior::copyFallBehavior (const FallBehavior &original) {
     this->actor = NULL;
