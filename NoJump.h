@@ -1,9 +1,9 @@
 #ifndef __NOJUMP_H__
 #define __NOJUMP_H__
 
-#include "JumpBehavior.h"
-
 namespace evolver {
+
+  class JumpBehavior;
 
   class NoJump : public JumpBehavior {
   public:

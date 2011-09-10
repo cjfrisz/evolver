@@ -1,9 +1,9 @@
 #ifndef __NOMOVEMENT_H__
 #define __NOMOVEMENT_H__
 
-#include "MoveBehavior.h"
-
 namespace evolver {
+
+  class MoveBehavior;
 
   class NoMovement : public MoveBehavior {
   public:

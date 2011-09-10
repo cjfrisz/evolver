@@ -1,9 +1,9 @@
 #ifndef __ACTORGL_H__
 #define __ACTORGL_H__
 
-#include "Actor.h"
-
 namespace evolver {
+
+  class Actor;
 
   const int ACTOR_SIZE = 30;
 

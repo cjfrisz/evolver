@@ -3,9 +3,9 @@
 
 #include <map>
 
-#include "Actor.h"
-
 namespace evolver {
+
+  class Actor;
   
   enum ActorAction { UP, DOWN, LEFT, RIGHT, NOT_AN_ACTION };
 

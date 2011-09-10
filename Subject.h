@@ -3,9 +3,9 @@
 
 #include <vector>
 
-#include "Listener.h"
-
 namespace evolver {
+
+  class Listener;
 
   class Subject {
   public:

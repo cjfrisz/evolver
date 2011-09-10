@@ -1,10 +1,9 @@
 #ifndef __ACTOR_H__
 #define __ACTOR_H__
 
-#include "Point2D.h"
-
 namespace evolver {
 
+  template <class T> class Point2D;
   class FallBehavior;
   class JumpBehavior;
   class MoveBehavior;

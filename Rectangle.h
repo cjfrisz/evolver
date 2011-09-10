@@ -3,10 +3,10 @@
 
 #inlude <cmath>
 
-#include "Point2D.h"
-#include "Linesegment2D.h"
-
 namespace evolver {
+
+  template <class T> class Point2D;
+  template <class Y> class LineSegment2D;
 
   template <class T>
   class Rectangle {

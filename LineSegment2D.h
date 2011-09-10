@@ -3,9 +3,9 @@
 
 #include <cmath>
 
-#include "Point2D.h"
-
 namespace evolver {
+
+  template <class T> class Point2D;
   
   template <class T>
   class Linesegment2D {

@@ -1,10 +1,10 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
-#include "Actor.h"
-#include "Controller.h"
-
 namespace evolver {
+
+  class Actor;
+  class Controller;
 
   class Player {
   public:
