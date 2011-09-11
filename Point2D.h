@@ -8,7 +8,7 @@ namespace evolver {
 /*************************
  *   CLASS DECLARATION	 *
  *************************/
-  template <class T>
+  template <typename T>
   class Point2D {
   public:
     Point2D (void);
@@ -42,24 +42,24 @@ namespace evolver {
  *  CLASS DEFINITION	 *
  *************************/
 
-  template <class T>
+  template <typename T>
   Point2D<T>::Point2D () {
     this->x = 0;
     this->y = 0;
     this->z = 0;
   }
   
-  template <class T>
+  template <typename T>
   Point2D<T>::~Point2D () {
     // Nothing to do yet
   }
 
-  template <class T>
+  template <typename T>
   Point2D<T>::Point2D (const Point2D &original) {
     this->copyPoint2D();
   }
 
-  template <class T>
+  template <typename T>
   Point2D<T> Point2D<T>::operator= (const Point2D<T> &original) {
     if (this != original) {
       this->copyPoint2D();
@@ -68,7 +68,7 @@ namespace evolver {
     return *this;
   }
 
-  template <class T>
+  template <typename T>
   bool Point2D<T>::operator== (const Point2D<T> &other) const {
     bool equal;
 
@@ -83,36 +83,36 @@ namespace evolver {
     return equal;
   }
 
-  template <class T>
+  template <typename T>
   bool Point2D<T>::operator!= (const Point2D<T> &other) const {
     return !(*this == other);
   }
 
-  template <class T>
+  template <typename T>
   T Point2D<T>::getX (void) {
     return this->x;
   }
 
-  template <class T>
+  template <typename T>
   T Point2D<T>::getY (void) {
     return this->y;
   }
 
-  template <class T>
+  template <typename T>
   void Point2D<T>::setX (T x) {
     this->x = x;
 
     return;
   }
 
-  template <class T>
+  template <typename T>
   void Point2D<T>::setY (T y) {
     this->y = y;
 
     return;
   }
 
-  template <class T>
+  template <typename T>
   T Point2D<T>::distance (const Point2D<T> &other) const {
     double dist;
 
@@ -124,7 +124,7 @@ namespace evolver {
     return (T)dist;    
   }
 
-  template <class T>
+  template <typename T>
   void Point2D<T>::copyPoint2D (const Point2D<T> &original) {
     this->x = original.x;
     this->y = original.y;

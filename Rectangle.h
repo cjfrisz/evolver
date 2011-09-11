@@ -5,10 +5,10 @@
 
 namespace evolver {
 
-  template <class T> class Point2D;
-  template <class Y> class LineSegment2D;
+  template <typename T> class Point2D;
+  template <typename Y> class LineSegment2D;
 
-  template <class T>
+  template <typename T>
   class Rectangle {
   public:
     Rectangle (void);
@@ -35,25 +35,25 @@ namespace evolver {
     Point2D<T> *topRight;
   };
 
-  template <class T>
+  template <typename T>
   Rectangle::Rectangle () {
     this->bottomLeft = new Point2D<T>;
     this->topRight = new Point2D<T>;
   }
  
-  template <class T>
+  template <typename T>
   Rectangle::~Rectangle () {
     delete bottomLeft;
     delete topRight;
   }
 
-  template <class T>
+  template <typename T>
   Rectangle::Rectangle (const Rectangle &original) {
     *(this->bottomLeft) = *(original.bottomLeft);
     *(this->topRight) = *(original.topRight);
   }
 
-  template <class T>
+  template <typename T>
   Rectangle &Rectangle::operator= (const Rectangle &original) {
     if (this != &original) {
       *(this->bottomLeft) = *(original.bottomLeft);
@@ -63,7 +63,7 @@ namespace evolver {
     return *this
   }
 
-  template <class T>
+  template <typename T>
   T Rectangle::getWidth () {
     T width;
 
@@ -73,7 +73,7 @@ namespace evolver {
     return width;
   }
 
-  template <class T>
+  template <typename T>
   T Rectangle::getHeight () {
     T height;
 
@@ -83,7 +83,7 @@ namespace evolver {
     return height;
   }
 
-  template <class T>
+  template <typename T>
   T Rectangle::getArea () {
     T area;
 
@@ -92,14 +92,14 @@ namespace evolver {
     return area;
   }
 
-  template <class T>
+  template <typename T>
   void Rectangle::setWidth (T width) {
     this->topRight->setX((this->bottomLeft->getX()) + width);
 
     return;
   }
 
-  template <class T>
+  template <typename T>
   void Rectangle::setHeight (T height) {
     this->topRight->setY((this->bottomLeft->getY()) + height);
 

@@ -2,7 +2,7 @@
 # Makefile for Evolver project
 # Written by Chris Frisz
 # Created 15 Aug 2011
-# Last updated 9 Sept 2011
+# Last updated 11 Sept 2011
 ##################################################
 
 #----------VARIABLES----------#
@@ -25,7 +25,7 @@ TARGET_FLAGS=$(SFML_FLAGS) $(GL_FLAGS) $(CXX_FLAGS) -o
 
 # Source/target file variables
 TARGET=$(BIN_PATH)/evolver
-MAIN=evolver.cpp
+MAIN=evolverSF.cpp
 BASE_FILES=Config.o \
 	NoFall.o \
 	NoJump.o \
