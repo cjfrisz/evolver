@@ -1,72 +1,72 @@
 #include <vector>
 #include <algorithm>
 
-#include "Listener.h"
+#include "Observer.h"
 #include "Subject.h"
 
 namespace evolver {
   
   Subject::Subject () {
-    this->attachedListeners = new std::vector<Listener*>();
+    this->attachedObservers = new std::vector<Observer*>();
   }
 
   Subject::~Subject () {
-    delete this->attachedListeners;
+    delete this->attachedObservers;
   }
 
   Subject::Subject (const Subject &original) {
-    *(this->attachedListeners) = *(original.attachedListeners);
+    *(this->attachedObservers) = *(original.attachedObservers);
   }
 
   Subject &Subject::operator= (const Subject &rhs) {
     if (this != &rhs) {
-      *(this->attachedListeners) = *(rhs.attachedListeners);
+      *(this->attachedObservers) = *(rhs.attachedObservers);
     }
 
     return *this;
   }
 
-  void Subject::attach (Listener *listener) {
-    std::vector<Listener*>::iterator elmnt;
+  void Subject::attach (Observer *observer) {
+    std::vector<Observer*>::iterator elmnt;
 
-    elmnt = std::find(this->attachedListeners->begin(),
-		      this->attachedListeners->end(),
-		      listener);
+    elmnt = std::find(this->attachedObservers->begin(),
+		      this->attachedObservers->end(),
+		      observer);
 
-    // Only attach the listener if it's not already attached
-    if (elmnt == this->attachedListeners->end()) {
-      this->attachedListeners->push_back(listener);
+    // Only attach the observer if it's not already attached
+    if (elmnt == this->attachedObservers->end()) {
+      this->attachedObservers->push_back(observer);
     }
     else {
-      // The listener was attached already
+      // The observer was attached already
     }
 
     return;
   }
 
-  void Subject::detach (Listener *listener) {
-    std::vector<Listener*>::iterator elmnt;
+  void Subject::detach (Observer *observer) {
+    std::vector<Observer*>::iterator elmnt;
 
-    elmnt = std::find(this->attachedListeners->begin(),
-		      this->attachedListeners->end(),
-		      listener);
+    elmnt = std::find(this->attachedObservers->begin(),
+		      this->attachedObservers->end(),
+		      observer);
 
-    // Only need to detach if the listener is attached
-    if (elmnt != this->attachedListeners->end()) {
-      this->attachedListeners->erase(elmnt);
+    // Only need to detach if the observer is attached
+    if (elmnt != this->attachedObservers->end()) {
+      this->attachedObservers->erase(elmnt);
     }
     else {
-      // The listener wasn't attached
+      // The observer wasn't attached
     }
 
     return;
   }
 
   void Subject::notify () {
-    std::vector<Listener*>::iterator first, last;
+    std::vector<Observer*>::iterator first, last;
 
-    first = this->attachedListeners->begin();
-    last = this->attachedListeners->end();
+    first = this->attachedObservers->begin();
+    last = this->attachedObservers->end();
     
     for (first; first != last; first++) {
       (*first)->update();

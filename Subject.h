@@ -5,7 +5,7 @@
 
 namespace evolver {
 
-  class Listener;
+  class Observer;
 
   class Subject {
   public:
@@ -15,12 +15,12 @@ namespace evolver {
 
     Subject &operator= (const Subject &original);
 
-    void attach (Listener *listener);
-    void detach (Listener *listener);
+    void attach (Observer *observer);
+    void detach (Observer *observer);
     void notify (void);
 
   private:
-    std::vector<Listener*> *attachedListeners;
+    std::vector<Observer*> *attachedObservers;
   };
 
 }

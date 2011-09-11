@@ -6,7 +6,7 @@
 namespace evolver {
 
   template <typename T> class Point2D;
-  template <typename Y> class LineSegment2D;
+  template <typename T> class LineSegment2D;
 
   template <typename T>
   class Rectangle {
@@ -25,10 +25,10 @@ namespace evolver {
 
     T getArea (void);
 
-    Linesegment2D<T> getTop (void);
-    Linesegment2D<T> getRight (void);
-    Linesegment2D<T> getBottom (void);
-    Linesegment2D<T> getLeft (void);
+    LineSegment2D<T> getTop (void);
+    LineSegment2D<T> getRight (void);
+    LineSegment2D<T> getBottom (void);
+    LineSegment2D<T> getLeft (void);
 
   private:
     Point2D<T> *bottomLeft;
@@ -106,8 +106,8 @@ namespace evolver {
     return;
   }
 
-  Linesegment2D<T> getTop () {
-    Linesegment2D<T> top = Linesegment2D();
+  LineSegment2D<T> getTop () {
+    LineSegment2D<T> top = LineSegment2D<T>();
 
     top.setEnd1X(this->bottomLeft->getX());
     top.setEnd1Y(this->topRight->getY());
@@ -118,8 +118,8 @@ namespace evolver {
     return top;
   }
 
-  Linesegment2D<T> getRight () {
-    Linesegment2D<T> right = Linesegment2D();
+  LineSegment2D<T> getRight () {
+    LineSegment2D<T> right = LineSegment2D<T>();
 
     right.setEnd1X(this->topRight->getX());
     right.setEnd1Y(this->topRight->getY());
@@ -130,8 +130,8 @@ namespace evolver {
     return right;
   }
 
-  Linesegment2D<T> getBottom () {
-    Linesegment2D<T> bottom = Linesegment2D();
+  LineSegment2D<T> getBottom () {
+    LineSegment2D<T> bottom = LineSegment2D<T>();
 
     bottom.setEnd1X(this->topRight->getX());
     bottom.setEnd1Y(this->bottomLeft->getY());
@@ -142,8 +142,8 @@ namespace evolver {
     return bottom;
   }
 
-  Linesegment2D<T> getLeft () {
-    Linesegment2D<T> left = Linesegment2D();
+  LineSegment2D<T> getLeft () {
+    LineSegment2D<T> left = LineSegment2D<T>();
 
     left.setEnd1X(this->bottomLeft->getX());
     left.setEnd1Y(this->bottomLeft->getY());
