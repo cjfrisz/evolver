@@ -2,11 +2,13 @@
 #define __CONFIGREADER_H__
 
 #include <string>
-#include <vector>
-
-#include "Settings.h"
+#include <map>
 
 namespace evolver {
+
+  class Settings;
+
+  enum ConfigType { SCREEN, KEY };
 
   const std::string SEPARATOR = " = ";
 
@@ -21,19 +23,18 @@ namespace evolver {
 
     ConfigReader &operator= (const ConfigReader &rhs);
 
-    std::string getConfigPath (void);
+    Settings *getSettings (enum ConfigType config);
 
-    void setConfigPath (std::string configPath);
+    void addSettings (enum ConfigType config, Settings *setting);
 
-    bool loadConfig (void);
-    bool writeConfig (void);    
+    bool loadConfig (const char *configPath);
+    bool writeConfig (const char *configPath);    
     
   protected:
     void copyConfigReader (const ConfigReader &original);
 
   private:
-    std::string configPath;
-    std::vector<Setting*> settings;
+    std::map<enum ConfigType, Settings*> *settings;
   };
 
 }
