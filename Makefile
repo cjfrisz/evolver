@@ -26,20 +26,22 @@ TARGET_FLAGS=$(SFML_FLAGS) $(GL_FLAGS) $(CXX_FLAGS) -o
 # Source/target file variables
 TARGET=$(BIN_PATH)/evolver
 MAIN=evolverSF.cpp
-BASE_FILES=Config.o \
-	NoFall.o \
-	NoJump.o \
-	NoMovement.o \
-	TextFall.o \
-	TextJump.o \
-	TextMove.o \
-	FallBehavior.o \
-	JumpBehavior.o \
-	Actor.o \
-	MoveBehavior.o \
-	Subject.o
-GL_FILES=ActorGL.o
-O_FILES=$(BASE_FILES) $(GL_FILES)
+BASE_CLASSES=Config \
+	NoFall \
+	NoJump \
+	NoMovement \
+	TextFall \
+	TextJump \
+	TextMove \
+	FallBehavior \
+	JumpBehavior \
+	Actor \
+	MoveBehavior \
+	Subject
+GL_CLASSES=ActorGL
+BASE_O_FILES=$(addsuffix .o, $(BASE_CLASSES))
+GL_O_FILES=$(addsuffix .o, $(GL_CLASSES))
+O_FILES=$(BASE_O_FILES) $(GL_O_FILES)
 
 # Delete utility and target variables
 RM=rm
@@ -84,5 +86,5 @@ clean :
 	$(RM) $(RM_FLAGS) $(EXCESS_FILES) $(O_FILES)
 
 # Remove all build files in addition to clean directives
-scrub : clean
+clobber : clean
 	$(RM) $(RM_FLAGS) $(TARGET)
