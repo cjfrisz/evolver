@@ -1,0 +1,23 @@
+I apologize in advance for anyone trying to use or contribute to this
+project. At current, it's a single wolf (myself, Chris Frisz
+(cjfrisz@chrisfrisz.com)) tryingt to design a 2D game engine without
+reading about how other people design games in C++. I'm simply trying
+to address each design problem as quickly as possible using OOP design
+patterns. That said, the master branch should compile, even if the
+resulting executable doesn't do much interesting. The include makefile
+is fairly self-explanatory, but here's a list of the notable rules:
+
+all: 
+     Compiles all execuateable, evolver, along with the necessary
+     classes.
+
+run:
+	Compiles the executeable and run it.
+
+clean:
+	Delete all ancilliary files (emacs backups, core dumps, etc.)
+	and object files
+
+clobber:
+	Delete all ancilliary files and compiled files (object files
+	and executeable)
