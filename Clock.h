@@ -3,26 +3,33 @@
 
 namespace evolver {
 
+  // Forward declaration of TimeStamp
+  class TimeStamp;
+
   class Clock {
   public:
     Clock *getClock (void);
 
     int getHours (void);
     int getMinutes (void);
-    float getSeconds (void);
+    int getSeconds (void);
+    int getMilliseconds (void);
+    TimeStamp *getTime (void);
 
     void setHours (int hours);
     void setMinutes (int minutes);
-    void setSeconds (float seconds);
+    void setSeconds (int seconds);
+    void setMilliseconds (int milliseconds);
+    void setTime (const TimeStamp &time);
 
     void updateHours (int addHours);
     void updateMinutes (int addMinutes);
-    void updateSeconds (float addSeconds);
+    void updateSeconds (int addSeconds);
+    void updateMilliseconds (int addMilliseconds);
+    void updateTime (const TimeStamp &time);
 
   private:
-    int hours;
-    int minutes;
-    float seconds;
+    TimeStamp *currentTime;
 
     static Clock *clock = 0;
 

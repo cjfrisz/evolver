@@ -1,3 +1,4 @@
+#include "TimeStamp.h"
 #include "Clock.h"
 
 namespace evolver {
@@ -11,61 +12,103 @@ namespace evolver {
   }
 
   int Clock::getHours () {
-    return this->hours;
+    return this->currentTime->getHours();
   }
 
   int Clock::getMinutes () { 
-    return this->minutes;
+    return this->currentTime->getMinutes();
   }
 
-  float Clock::getSeconds () {
-    return this->seconds;
+  int Clock::getSeconds () {
+    return this->currentTime->getSeconds();
+  }
+
+  int Clock::getMilliseconds () {
+    return this->currentTime->getMilliseconds();
+  }
+
+  TimeStamp *Clock::getTime () {
+    TimeStamp *result;
+
+    result = new TimeStamp();
+
+    *result = *(this->currentTime);
+
+    return result;
   }
 
   void Clock::setHours (int hours) {
-    this->hours = hours;
+    this->currentTime->setHours(hours);
 
     return;
   }
 
   void Clock::setMinutes (int minutes) {
-    this->minutes = minutes;
+    this->currentTime->setMinutes(minutes);
 
     return;
   }
 
-  void Clock::setSeconds (float seconds) {
-    this->seconds = seconds;
+  void Clock::setSeconds (int seconds) {
+    this->currentTime->setSeconds(seconds);
+
+    return;
+  }
+
+  void Clock::setMilliseconds (int milliseconds) {
+    this->currentTime->setMilliseconds(milliseconds);
+
+    return;
+  }
+
+  void setTime (const TimeStamp &time) {
+    *(this->currentTime) = time;
 
     return;
   }
 
   void Clock::updateHours (int addHours) {
-    this->hours += addHours;
+    int curHours;
+
+    curHours = this->currentTime->getHours();
+
+    this->currentTime->setHours(curHours + addHours);
 
     return;
   }
 
   void Clock::updateMinutes (int addMinutes) {
-    this->minutes += addMinutes;
+    int curMinutes;
+
+    curMinutes = this->currentTime->getMinutes();
+
+    this->currentTime->setMinutes(curMinutes + addMinutes);
 
     return;
   }
 
-  void Clock::updateSeconds (float addSeconds) {
-    this->seconds += addSeconds;
+  void Clock::updateSeconds (int addSeconds) {
+    int curSeconds;
+
+    curSeconds = this->currentTime->getSeconds();
+
+    this->currentTime->setSeconds(curSeconds + addSeconds);
+
+    return;
+  }
+
+  void Clock::updateTime (const TimeStamp &time) {
+    *(this->currentTime) += time;
 
     return;
   }
 
   Clock::Clock () {
-    this->hours = 0;
-    this->minutes = 0;
-    this->seconds = 0.0;
+    this->currentTime = new TimeStamp();
   }
 
   Clock::~Clock () {
-    // Nothing to do yet
+    delete this->currentTime;
   }
 
   Clock::Clock (const Clock &original) {
@@ -81,9 +124,9 @@ namespace evolver {
   }
 
   void Clock::copyClock (const Clock &original) {
-    this->hours = original.hours;
-    this->minutes = original.minutes;
-    this->seconds = original.seconds;
+    *(this->currentTime) = *(original.currentTime);
+
+    return;
   }
 
 }
