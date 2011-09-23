@@ -48,25 +48,14 @@ namespace evolver {
   }
 
   TimeStamp &TimeStamp::operator+ (const TimeStamp &rhs) {
-    TimeStamp result;
-
-    result = *this;
-
-    // We rely on the normalization from the += operator
-    result += rhs;
-
-    return result;
+    // For some reason this is the only way the compiler doesn't
+    // generate a warning
+    return TimeStamp(*this) += rhs;
   }
 
   TimeStamp &TimeStamp::operator- (const TimeStamp &rhs) {
-    TimeStamp result;
-    
-    result = *this;
-
-    // We rely on the normalization from the -= operator
-    result -= rhs;
-
-    return result;
+    // Again, I don't know why this doesn't raise a warning
+    return TimeStamp(*this) -= rhs;
   }
 
   int TimeStamp::getHours () {
@@ -126,7 +115,7 @@ namespace evolver {
     return;
   }
 
-  void normalizeTime () {
+  void TimeStamp::normalizeTime () {
     // Normalize milliseconds
     if (this->milliseconds >= MILLISECONDS_PER_SECOND) {
       this->seconds += (this->milliseconds / MILLISECONDS_PER_SECOND);
