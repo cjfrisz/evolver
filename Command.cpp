@@ -28,7 +28,7 @@ namespace evolver {
     return;
   }
 
-  void Coommand::copyCommand (const Command &original) {
+  void Command::copyCommand (const Command &original) {
     // Nothing to do yet
 
     return;
