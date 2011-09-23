@@ -174,8 +174,7 @@ namespace evolver {
       // pressed
       for (it=controls->begin(); it != controls->end(); it++) {
 	if (evolver.GetInput().IsKeyDown((*it).first)) {
-	  controller.handleControl((*it).second, 
-				   evolver.GetFrameTime());
+	  controller.handleControl((*it).second);
 	}
       }
 

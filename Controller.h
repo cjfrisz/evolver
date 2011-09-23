@@ -27,7 +27,7 @@ namespace evolver {
     void setControlActionPair (K control, enum ActorAction action);
     void setControlled (Actor *controlled);
 
-    void handleControl (enum ActorAction, float timeElapsed);
+    void handleControl (enum ActorAction);
 
   protected:
     void copyController (const Controller<K> &original);
@@ -105,21 +105,20 @@ namespace evolver {
   }
 
   template <typename K>
-  void Controller<K>::handleControl (enum ActorAction action, 
-				  float timeElapsed) {
+  void Controller<K>::handleControl (enum ActorAction action) {
     switch (action) 
       {
       case UP:
-	this->controlled->getMoveBehavior()->moveUp(timeElapsed);
+	this->controlled->getMoveBehavior()->moveUp();
 	break;
       case DOWN:
-	this->controlled->getMoveBehavior()->moveDown(timeElapsed);
+	this->controlled->getMoveBehavior()->moveDown();
 	break;
       case LEFT:
-	this->controlled->getMoveBehavior()->moveLeft(timeElapsed);
+	this->controlled->getMoveBehavior()->moveLeft();
 	break;
       case RIGHT:
-	this->controlled->getMoveBehavior()->moveRight(timeElapsed);
+	this->controlled->getMoveBehavior()->moveRight();
 	break;
       }
     
