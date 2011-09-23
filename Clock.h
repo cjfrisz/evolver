@@ -31,7 +31,7 @@ namespace evolver {
   private:
     TimeStamp *currentTime;
 
-    static Clock *clock = 0;
+    static Clock *clock;
 
     Clock (void);
     ~Clock (void);
@@ -41,6 +41,9 @@ namespace evolver {
     
     void copyClock (const Clock &original);    
   };
+
+  // Initialize the clock to 0
+  Clock *Clock::clock = 0;
 
 }
 
