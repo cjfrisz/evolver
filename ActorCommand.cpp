@@ -3,44 +3,48 @@
 #include "Actor.h"
 #include "ActorCommand.h"
 
-ActorCommand::ActorCommand () {
-  this->actor = NULL;
-}
+namespace evolver {
 
-ActorCommand::~ActorCommand () {
-  // Nothing to do yet
-}
-
-ActorCommand::ActorCommand (const ActorCommand &original) {
-  this->copyActorCommand(original);
-}
-
-ActorCommand &ActorCommand::operator= (const ActorCommand &rhs) {
-  if (this != &rhs) {
-    this->copyActorCommand(rhs);
+  ActorCommand::ActorCommand () {
+    this->actor = NULL;
   }
 
-  return *this;
-}
+  ActorCommand::~ActorCommand () {
+    // Nothing to do yet
+  }
 
-Actor *ActorCommand::getActor () {
-  return this->actor;
-}
+  ActorCommand::ActorCommand (const ActorCommand &original) {
+    this->copyActorCommand(original);
+  }
 
-void ActorCommand::setActor (Actor *actor) {
-  this->actor = actor;
+  ActorCommand &ActorCommand::operator= (const ActorCommand &rhs) {
+    if (this != &rhs) {
+      this->copyActorCommand(rhs);
+    }
 
-  return;
-}
+    return *this;
+  }
 
-void ActorCommand::execute () {
-  // Nothing to do
+  Actor *ActorCommand::getActor () {
+    return this->actor;
+  }
+
+  void ActorCommand::setActor (Actor *actor) {
+    this->actor = actor;
+
+    return;
+  }
+
+  void ActorCommand::execute () {
+    // Nothing to do
   
-  return;
-}
+    return;
+  }
 
-void ActorCommand::copyActorCommand (const ActorCommand &original) {
-  *(this->actor) = *(original.actor);
+  void ActorCommand::copyActorCommand (const ActorCommand &original) {
+    *(this->actor) = *(original.actor);
 
-  return;
+    return;
+  }
+
 }
