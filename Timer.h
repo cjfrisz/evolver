@@ -3,6 +3,8 @@
 
 namespace evolver {
 
+  class TimeStamp;
+
   class Timer {
   public:
     Timer (void);
@@ -10,12 +12,16 @@ namespace evolver {
     Timer (const Timer &original);
     
     Timer &operator= (const Timer &rhs);
-    
+
+    TimeStamp *getMark (void);
+
+    void setMark (TimeStamp *mark);
+
   protected:
     void copyTimer (const Timer &original);
     
   private:
-    
+    TimeStamp *mark;
   };
 
 }
