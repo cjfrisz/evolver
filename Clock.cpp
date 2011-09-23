@@ -3,6 +3,9 @@
 
 namespace evolver {
 
+  // Initialize the clock to 0
+  Clock *Clock::clock = 0;
+
   Clock *Clock::getClock () {
     if (Clock::clock == 0) {
       Clock::clock = new Clock();

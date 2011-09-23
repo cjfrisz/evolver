@@ -42,9 +42,6 @@ namespace evolver {
     void copyClock (const Clock &original);    
   };
 
-  // Initialize the clock to 0
-  Clock *Clock::clock = 0;
-
 }
 
 #endif
