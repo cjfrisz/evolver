@@ -2,7 +2,7 @@
 # Makefile for Evolver project
 # Written by Chris Frisz
 # Created 15 Aug 2011
-# Last updated 11 Sept 2011
+# Last updated 23 Sept 2011
 ##################################################
 
 #----------VARIABLES----------#
@@ -26,18 +26,29 @@ TARGET_FLAGS=$(SFML_FLAGS) $(GL_FLAGS) $(CXX_FLAGS) -o
 # Source/target file variables
 TARGET=$(BIN_PATH)/evolver
 MAIN=evolverSF.cpp
-BASE_CLASSES=Config \
+BASE_CLASSES=ActorCommand \
+	Actor \
+	Clock \
+	Command \
+	Config \
+	FallBehavior \
+	JumpBehavior \
+	JumpCommand \
+	MoveBehavior \
+	MoveDownCommand \
+	MoveLeftCommand \
+	MoveRightCommand \
+	MoveUpCommand \
 	NoFall \
 	NoJump \
 	NoMovement \
+	Observer \
+	Player \
 	TextFall \
 	TextJump \
 	TextMove \
-	FallBehavior \
-	JumpBehavior \
-	Actor \
-	MoveBehavior \
-	Subject
+	Timer \
+	TimeStamp
 GL_CLASSES=ActorGL
 BASE_O_FILES=$(addsuffix .o, $(BASE_CLASSES))
 GL_O_FILES=$(addsuffix .o, $(GL_CLASSES))
