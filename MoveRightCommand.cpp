@@ -1,3 +1,5 @@
+#include "Actor.h"
+#include "MoveBehavior.h"
 #include "ActorCommand.h"
 #include "MoveRightCommand.h"
 
@@ -27,8 +29,10 @@ namespace evolver {
     this->getActor()->getMoveBehavior()->moveRight();
   }
 
-  void MoveRightCommand::copyMoveRightCommand (const MoveRightCommand &original) {
-    this->copyActorCommand();
+  void
+  MoveRightCommand::copyMoveRightCommand
+  (const MoveRightCommand &original) {
+    this->copyActorCommand(original);
 
     return;
   }
