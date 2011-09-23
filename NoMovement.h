@@ -13,10 +13,10 @@ namespace evolver {
 
     NoMovement &operator= (const NoMovement &original);
 
-    void moveUp (float elapsedTime);
-    void moveDown (float elapsedTime);
-    void moveLeft (float elapsedTime);
-    void moveRight (float elapsedTime);
+    void moveUp (void);
+    void moveDown (void);
+    void moveLeft (void);
+    void moveRight (void);
 
   protected:
     void copyNoMovement (const NoMovement &original);

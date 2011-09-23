@@ -13,10 +13,10 @@ namespace evolver {
     
     TextMove &operator= (const TextMove &rhs);
 
-    void moveUp (float elapsedTime);   
-    void moveDown (float elapsedTime); 
-    void moveLeft (float elapsedTime); 
-    void moveRight (float elapsedTime);
+    void moveUp (void);   
+    void moveDown (void); 
+    void moveLeft (void); 
+    void moveRight (void);
 
   protected:
     void copyTextMove (const TextMove &original);

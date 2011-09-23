@@ -24,25 +24,25 @@ namespace evolver {
     return *this;
   }
 
-  void NoMovement::moveUp (float elapsedTime) {
+  void NoMovement::moveUp () {
     // Do nothing because we don't move
 
     return;
   }
 
-  void NoMovement::moveDown (float elapsedTime) {
-    // Do nothing because we don't move
-    
-    return;
-  }
-
-  void NoMovement::moveLeft (float elapsedTime) {
+  void NoMovement::moveDown () {
     // Do nothing because we don't move
     
     return;
   }
 
-  void NoMovement::moveRight (float elapsedTime) {
+  void NoMovement::moveLeft () {
+    // Do nothing because we don't move
+    
+    return;
+  }
+
+  void NoMovement::moveRight () {
     // Do nothing because we don't move
     
     return;
