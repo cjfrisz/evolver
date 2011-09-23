@@ -1,3 +1,5 @@
+#include "Actor.h"
+#include "JumpBehavior.h"
 #include "ActorCommand.h"
 #include "JumpCommand.h"
 
@@ -24,11 +26,11 @@ namespace evolver {
   }
 
   void JumpCommand::execute () {
-    this->getActor()->getMoveBehavior()->jump();
+    this->getActor()->getJumpBehavior()->jump();
   }
 
   void JumpCommand::copyJumpCommand (const JumpCommand &original) {
-    this->copyActorCommand();
+    this->copyActorCommand(original);
 
     return;
   }
