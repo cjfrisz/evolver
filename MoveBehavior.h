@@ -17,10 +17,10 @@ namespace evolver {
 
     void setActor (Actor *actor);
 
-    virtual void moveUp (float elapsedTime);
-    virtual void moveDown (float elapsedTime);
-    virtual void moveLeft (float elapsedTime);
-    virtual void moveRight (float elapsedTime);
+    virtual void moveUp (void);
+    virtual void moveDown (void);
+    virtual void moveLeft (void);
+    virtual void moveRight (void);
 
   protected:
     void copyMoveBehavior (const MoveBehavior &original);

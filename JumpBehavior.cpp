@@ -35,7 +35,7 @@ namespace evolver {
     return;
   }
 
-  void JumpBehavior::jump (float timeElapsed) { }
+  void JumpBehavior::jump () { }
 
   void JumpBehavior::copyJumpBehavior (const JumpBehavior &original) {
     this->actor = NULL;

@@ -35,7 +35,7 @@ namespace evolver {
     return;
   }
 
-  void FallBehavior::fall (float timeElapsed) { }
+  void FallBehavior::fall () { }
 
   void FallBehavior::copyFallBehavior (const FallBehavior &original) {
     this->actor = NULL;

@@ -34,13 +34,13 @@ namespace evolver {
     return;
   }
 
-  void MoveBehavior::moveUp (float elapsedTime) { }
+  void MoveBehavior::moveUp (void) { }
   
-  void MoveBehavior::moveDown (float elapsedTime) { }
+  void MoveBehavior::moveDown (void) { }
 
-  void MoveBehavior::moveLeft (float elapsedTime) { }
+  void MoveBehavior::moveLeft (void) { }
 
-  void MoveBehavior::moveRight (float elapsedTime) { }
+  void MoveBehavior::moveRight (void) { }
 
   void MoveBehavior::copyMoveBehavior (const MoveBehavior &original) {
     this->actor = NULL;
