@@ -27,29 +27,25 @@ namespace evolver {
   }
 
   void TextMove::moveUp () {
-    std::cout << "Moving up! (" << elapsedTime << 
-      " elapsed)." << std::endl;
+    std::cout << "Moving up!" << std::endl;
 
     return;
   }
    
   void TextMove::moveDown () {
-    std::cout << "Moving down! (" << elapsedTime << 
-      " elapsed)." << std::endl;
+    std::cout << "Moving down!" << std::endl;
 
     return;
   }
 
   void TextMove::moveLeft () {
-    std::cout << "Moving left! (" << elapsedTime << 
-      " elapsed)." << std::endl;
+    std::cout << "Moving left!" << std::endl;
 
     return;
   }
 
   void TextMove::moveRight () {
-    std::cout << "Moving right! (" << elapsedTime << 
-      " elapsed)." << std::endl;
+    std::cout << "Moving right!" << std::endl;
 
     return;
   }
