@@ -61,7 +61,7 @@ namespace evolver {
     return;
   }
 
-  void setTime (const TimeStamp &time) {
+  void Clock::setTime (const TimeStamp &time) {
     *(this->currentTime) = time;
 
     return;
