@@ -42,7 +42,6 @@ BASE_CLASSES=ActorCommand \
 	NoFall \
 	NoJump \
 	NoMovement \
-	Observer \
 	TextFall \
 	TextJump \
 	TextMove \
