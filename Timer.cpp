@@ -6,7 +6,7 @@ namespace evolver {
 
   Timer::Timer (void) {
     this->mark = new TimeStamp();
-    this->mark->setMark(Clock.getClock()->getTime());
+    this->mark = Clock::getClock()->getTime();
   }
   
   Timer::~Timer (void) {
@@ -41,7 +41,7 @@ namespace evolver {
     hours = this->mark->getHours();
 
     delete this->mark;
-    this->mark = Clock.getClock()->getTime();
+    this->mark = Clock::getClock()->getTime();
 
     return hours;
   }
@@ -52,7 +52,7 @@ namespace evolver {
     minutes = this->mark->getMinutes();
 
     delete this->mark;
-    this->mark = Clock.getClock()->getTime();
+    this->mark = Clock::getClock()->getTime();
 
     return minutes;
   }
@@ -63,7 +63,7 @@ namespace evolver {
     seconds = this->mark->getSeconds();
 
     delete this->mark;
-    this->mark = Clock.getClock()->getTime();
+    this->mark = Clock::getClock()->getTime();
 
     return seconds;
   }
@@ -74,7 +74,7 @@ namespace evolver {
     milliseconds = this->mark->getMilliseconds();
 
     delete this->mark;
-    this->mark = Clock.getClock()->getTime();
+    this->mark = Clock::getClock()->getTime();
 
     return milliseconds;
   }
@@ -82,9 +82,9 @@ namespace evolver {
   TimeStamp *Timer::elapsedTime () {
     TimeStamp *elapsedTime;
 
-    *elapsedTime = *(Clock.getClock()->getTime()) - *(this->mark);
+    *elapsedTime = *(Clock::getClock()->getTime()) - *(this->mark);
     delete this->mark;
-    this->mark = Clock.getClock()->getTime();
+    this->mark = Clock::getClock()->getTime();
 
     return elapsedTime;
   }
