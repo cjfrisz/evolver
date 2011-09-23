@@ -4,11 +4,11 @@
 namespace evolver {
 
   Clock *Clock::getClock () {
-    if (this->clock == 0) {
-      this->clock = new Clock();
+    if (Clock::clock == 0) {
+      Clock::clock = new Clock();
     }
 
-    return this->clock;
+    return Clock::clock;
   }
 
   int Clock::getHours () {

@@ -8,7 +8,7 @@ namespace evolver {
 
   class Clock {
   public:
-    Clock *getClock (void);
+    static Clock *getClock (void);
 
     int getHours (void);
     int getMinutes (void);
