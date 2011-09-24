@@ -122,6 +122,7 @@ namespace evolver {
     this->hours = original.hours;
     this->minutes = original.minutes;
     this->seconds = original.seconds;
+    this->milliseconds = original.milliseconds;
 
     return;
   }
@@ -130,19 +131,19 @@ namespace evolver {
     // Normalize milliseconds
     if (this->milliseconds >= MILLISECONDS_PER_SECOND) {
       this->seconds += (this->milliseconds / MILLISECONDS_PER_SECOND);
-      this->milliseconds &= MILLISECONDS_PER_SECOND;
+      this->milliseconds %= MILLISECONDS_PER_SECOND;
     }
 
     // Normalize seconds
     if (this->seconds >= SECONDS_PER_MINUTE) {
       this->minutes += (this->seconds / SECONDS_PER_MINUTE);
-      this->seconds &= SECONDS_PER_MINUTE;
+      this->seconds %= SECONDS_PER_MINUTE;
     }
     
     // Normalize minutes
     if (this->minutes >= MINUTES_PER_HOUR) {
       this->hours += (this->minutes / MINUTES_PER_HOUR);
-      this->minutes &= SECONDS_PER_MINUTE;
+      this->minutes %= SECONDS_PER_MINUTE;
     }
   }
 
