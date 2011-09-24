@@ -2,10 +2,11 @@
 #define __TEXTMOVE_H__
 
 #include "MoveBehavior.h"
+#include "Timer.h"
 
 namespace evolver {
 
-  class TextMove : public MoveBehavior {
+  class TextMove : public MoveBehavior, public Timer {
   public:
     TextMove (void);
     ~TextMove (void);

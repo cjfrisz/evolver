@@ -3,6 +3,7 @@
 
 #include "TextMove.h"
 #include "MoveBehavior.h"
+#include "Timer.h"
 
 namespace evolver {
 
@@ -27,25 +28,29 @@ namespace evolver {
   }
 
   void TextMove::moveUp () {
-    std::cout << "Moving up!" << std::endl;
+    std::cout << "Moving up! " 
+	      << this->elapsedMilliseconds() << " elapsed." << std::endl;
 
     return;
   }
    
   void TextMove::moveDown () {
-    std::cout << "Moving down!" << std::endl;
+    std::cout << "Moving down! " 
+	      << this->elapsedMilliseconds() << " elapsed." << std::endl;
 
     return;
   }
 
   void TextMove::moveLeft () {
-    std::cout << "Moving left!" << std::endl;
+    std::cout << "Moving left! " 
+	      << this->elapsedMilliseconds() << " elapsed." << std::endl;
 
     return;
   }
 
   void TextMove::moveRight () {
-    std::cout << "Moving right!" << std::endl;
+    std::cout << "Moving right! " 
+	      << this->elapsedMilliseconds() << " elapsed." << std::endl;
 
     return;
   }
