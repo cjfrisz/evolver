@@ -82,7 +82,8 @@ namespace evolver {
   TimeStamp *Timer::elapsedTime () {
     TimeStamp *elapsedTime;
 
-    *elapsedTime = *(Clock::getClock()->getTime()) - *(this->mark);
+    elapsedTime = new TimeStamp(*(Clock::getClock()->getTime()) - 
+				 *(this->mark));
     delete this->mark;
     this->mark = Clock::getClock()->getTime();
 
