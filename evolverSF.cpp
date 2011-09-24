@@ -1,3 +1,4 @@
+#include <cmath>
 #include <cstdlib>
 #include <iostream>
 #include <string>
@@ -19,6 +20,7 @@
 #include "TextFall.h"
 #include "TextJump.h"
 #include "TextMove.h"
+#include "Clock.h"
 
 namespace evolver {
   
@@ -142,7 +144,7 @@ namespace evolver {
 
   void evolverEventLoop (void) {
     bool done;
-    float elapsedTime;
+    double elapsedTime, intTime, fracTime;
     sf::Event event;
     std::map<sf::Key::Code, enum ActorAction> *controls;
     std::map<sf::Key::Code, enum ActorAction>::iterator it;
@@ -150,7 +152,17 @@ namespace evolver {
     done = false;
 
     while (done == false) {
-      
+
+      // Update the global clock 
+      elapsedTime = evolver.GetFrameTime();
+      fracTime = modf(elapsedTime, &intTime);
+      // This is quick and dirty right now, but there'll be a cleaner
+      // conversion from SFML's time as a float to the generalized
+      // TimeStamp as integral seconds and milliseconds.
+      Clock::getClock()->updateSeconds((int)intTime);
+      Clock::getClock()->
+	updateMilliseconds(((int)rint(fracTime * 1000)));
+
       while (evolver.GetEvent(event)) {
 	
 	switch (event.Type) {
