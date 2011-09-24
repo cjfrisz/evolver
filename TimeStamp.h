@@ -1,6 +1,8 @@
 #ifndef __TIMESTAMP_H__
 #define __TIMESTAMP_H__
 
+#include <ostream>
+
 namespace evolver {
 
   // These might be silly, but I hate magic numbers
@@ -32,6 +34,9 @@ namespace evolver {
     void setMinutes (int minutes);
     void setSeconds (int minutes);
     void setMilliseconds (int milliseconds);
+
+    friend 
+      std::ostream &operator<< (std::ostream &out, TimeStamp &time);
 
   protected:
     void copyTimeStamp (const TimeStamp &original);

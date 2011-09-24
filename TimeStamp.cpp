@@ -1,3 +1,5 @@
+#include <ostream>
+
 #include "TimeStamp.h"
 
 namespace evolver {
@@ -104,6 +106,15 @@ namespace evolver {
     this->normalizeTime();
 
     return;
+  }
+
+  std::ostream &operator<< (std::ostream &out, TimeStamp &time) {
+    out << time.hours << " hours, " 
+	<< time.minutes << " minutes, "
+	<< time.seconds << " seconds, "
+	<< time.milliseconds << " milliseconds";
+
+    return out;
   }
 
   void TimeStamp::copyTimeStamp (const TimeStamp &original) {
