@@ -21,7 +21,7 @@ CXX_FLAGS=$(DEBUG_FLAGS)
 GL_FLAGS=-lGLU -lGL
 SFML_FLAGS=-lsfml-graphics -lsfml-window -lsfml-system
 O_FLAGS=$(CXX_FLAGS) -c
-TARGET_FLAGS=$(SFML_FLAGS) $(GL_FLAGS) $(CXX_FLAGS) -o
+TARGET_FLAGS=$(SFML_FLAGS) $(GL_FLAGS) $(CXX_FLAGS) -lm -o
 
 # Source/target file variables
 TARGET=$(BIN_PATH)/evolver
