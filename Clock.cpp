@@ -100,6 +100,17 @@ namespace evolver {
     return;
   }
 
+  void Clock::updateMilliseconds (int addMilliseconds) {
+    int curMilliseconds;
+
+    curMilliseconds = this->currentTime->getSeconds();
+    
+    this->currentTime->
+      setMilliseconds(curMilliseconds + addMilliseconds);
+
+    return;
+  }
+
   void Clock::updateTime (const TimeStamp &time) {
     *(this->currentTime) += time;
 
