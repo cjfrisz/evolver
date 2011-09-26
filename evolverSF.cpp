@@ -155,13 +155,23 @@ namespace evolver {
 
       // Update the global clock 
       elapsedTime = evolver.GetFrameTime();
-      fracTime = modf(elapsedTime, &intTime);
       // This is quick and dirty right now, but there'll be a cleaner
       // conversion from SFML's time as a float to the generalized
       // TimeStamp as integral seconds and milliseconds.
-      Clock::getClock()->updateSeconds((int)intTime);
       Clock::getClock()->
-	updateMilliseconds(((int)rint(fracTime * 1000)));
+	updateMilliseconds(((int)rint(elapsedTime * 1000)));
+
+      /* Handle controls */
+      // Get the map of controls
+      controls = controller.getControls();
+
+      // Loop over the controls and see if any of them are being
+      // pressed
+      for (it=controls->begin(); it != controls->end(); it++) {
+	if (evolver.GetInput().IsKeyDown((*it).first)) {
+	  controller.handleControl((*it).second);
+	}
+      }
 
       while (evolver.GetEvent(event)) {
 	
@@ -176,18 +186,6 @@ namespace evolver {
 	    break;
 	}
 	
-      }
-
-      /* Handle controls */
-      // Get the map of controls
-      controls = controller.getControls();
-
-      // Loop over the controls and see if any of them are being
-      // pressed
-      for (it=controls->begin(); it != controls->end(); it++) {
-	if (evolver.GetInput().IsKeyDown((*it).first)) {
-	  controller.handleControl((*it).second);
-	}
       }
 
       evolverDraw();
