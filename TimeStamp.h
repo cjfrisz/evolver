@@ -25,6 +25,10 @@ namespace evolver {
     TimeStamp &operator+ (const TimeStamp &rhs);
     TimeStamp &operator- (const TimeStamp &rhs);
 
+    friend
+      std::ostream 
+      &operator<< (std::ostream &out, const TimeStamp &time);
+    
     int getHours (void);
     int getMinutes (void);
     int getSeconds (void);
@@ -34,9 +38,6 @@ namespace evolver {
     void setMinutes (int minutes);
     void setSeconds (int minutes);
     void setMilliseconds (int milliseconds);
-
-    friend 
-      std::ostream &operator<< (std::ostream &out, TimeStamp &time);
 
   protected:
     void copyTimeStamp (const TimeStamp &original);
