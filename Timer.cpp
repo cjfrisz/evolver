@@ -5,8 +5,7 @@
 namespace evolver {
 
   Timer::Timer (void) {
-    this->mark = new TimeStamp();
-    this->mark = Clock::getClock()->getTime();
+    this->mark = new TimeStamp(*(Clock::getClock()->getTime()));
   }
   
   Timer::~Timer (void) {
