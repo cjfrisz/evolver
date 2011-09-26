@@ -109,7 +109,7 @@ namespace evolver {
     return;
   }
 
-  std::ostream &operator<< (std::ostream &out, TimeStamp &time) {
+  std::ostream &operator<< (std::ostream &out, const TimeStamp &time) {
     out << time.hours << " hours, " 
 	<< time.minutes << " minutes, "
 	<< time.seconds << " seconds, "
