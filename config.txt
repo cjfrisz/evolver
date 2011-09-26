@@ -1,6 +1,6 @@
 fullscreen = 0
-screen_width = 800
-screen_height = 600
+screen_width = 640
+screen_height = 480
 color_depth = 32
 UP = w
 DOWN = s
