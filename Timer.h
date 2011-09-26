@@ -17,11 +17,11 @@ namespace evolver {
 
     void setMark (TimeStamp *mark);
 
+    TimeStamp *elapsedTime (void);
     int elapsedHours (void);
     int elapsedMinutes (void);
     int elapsedSeconds (void);
     int elapsedMilliseconds (void);
-    TimeStamp *elapsedTime (void);
 
   protected:
     void copyTimer (const Timer &original);
