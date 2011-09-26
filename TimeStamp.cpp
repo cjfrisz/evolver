@@ -1,3 +1,4 @@
+#include <cmath>
 #include <ostream>
 
 #include "TimeStamp.h"
@@ -128,10 +129,21 @@ namespace evolver {
   }
 
   void TimeStamp::normalizeTime () {
+    int negativeDifference;
+
     // Normalize milliseconds
     if (this->milliseconds >= MILLISECONDS_PER_SECOND) {
       this->seconds += (this->milliseconds / MILLISECONDS_PER_SECOND);
       this->milliseconds %= MILLISECONDS_PER_SECOND;
+    }
+
+    if (this->milliseconds < 0) {
+      negativeDifference = 
+	(int)(ceil(std::abs((double)(this->milliseconds) / 
+			    (double)(MILLISECONDS_PER_SECOND))));
+      this->seconds -= negativeDifference;
+      this->milliseconds += 
+	(negativeDifference * MILLISECONDS_PER_SECOND);
     }
 
     // Normalize seconds
@@ -139,11 +151,29 @@ namespace evolver {
       this->minutes += (this->seconds / SECONDS_PER_MINUTE);
       this->seconds %= SECONDS_PER_MINUTE;
     }
+
+    if (this->seconds < 0) {
+      negativeDifference = 
+	(int)(ceil(std::abs((double)(this->seconds) / 
+			    (double)(SECONDS_PER_MINUTE))));
+      this->minutes -= negativeDifference;
+      this->seconds += 
+	(negativeDifference * SECONDS_PER_MINUTE);
+    }
     
     // Normalize minutes
     if (this->minutes >= MINUTES_PER_HOUR) {
       this->hours += (this->minutes / MINUTES_PER_HOUR);
       this->minutes %= SECONDS_PER_MINUTE;
+    }
+
+    if (this->minutes < 0) {
+      negativeDifference = 
+	(int)(ceil(std::abs((double)(this->minutes) / 
+			    (double)(MINUTES_PER_HOUR))));
+      this->hours -= negativeDifference;
+      this->minutes += 
+	(negativeDifference * MINUTES_PER_HOUR);
     }
   }
 
