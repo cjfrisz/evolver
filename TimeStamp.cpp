@@ -29,10 +29,10 @@ namespace evolver {
   }
 
   TimeStamp &TimeStamp::operator+= (const TimeStamp &rhs) {
-    this->hours += rhs.hours;
-    this->minutes += rhs.minutes;
-    this->seconds += rhs.seconds;
     this->milliseconds += rhs.milliseconds;
+    this->seconds += rhs.seconds;
+    this->minutes += rhs.minutes;
+    this->hours += rhs.hours;
 
     this->normalizeTime();
 
@@ -40,25 +40,34 @@ namespace evolver {
   }
 
   TimeStamp &TimeStamp::operator-= (const TimeStamp &rhs) {
-    this->hours -= rhs.hours;
-    this->minutes -= rhs.minutes;
+    this->milliseconds -= rhs.milliseconds;
     this->seconds -= rhs.seconds;
-    this->milliseconds -= rhs.seconds;
+    this->minutes -= rhs.minutes;
+    this->hours -= rhs.hours;
 
     this->normalizeTime();
-    
+
     return *this;
   }
 
   TimeStamp &TimeStamp::operator+ (const TimeStamp &rhs) {
-    // For some reason this is the only way the compiler doesn't
-    // generate a warning
-    return TimeStamp(*this) += rhs;
+    TimeStamp *sum;
+
+    sum = new TimeStamp(*this);
+
+    *sum += rhs;
+
+    return *sum;
   }
 
   TimeStamp &TimeStamp::operator- (const TimeStamp &rhs) {
-    // Again, I don't know why this doesn't raise a warning
-    return TimeStamp(*this) -= rhs;
+    TimeStamp *difference;
+
+    difference = new TimeStamp(*this);
+
+    *difference -= rhs;
+
+    return *difference;
   }
 
   int TimeStamp::getHours () {
