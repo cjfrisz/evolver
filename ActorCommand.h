@@ -15,9 +15,9 @@ namespace evolver {
 
     ActorCommand &operator= (const ActorCommand &rhs);
 
-    Actor *getActor (void);
+    Actor &getActor (void);
 
-    void setActor (Actor *actor);
+    void setActor (Actor &actor);
 
     virtual void execute (void);
     
@@ -25,7 +25,7 @@ namespace evolver {
     void copyActorCommand (const ActorCommand &original);
     
   private:
-    Actor *actor;
+    Actor actor;
   };
 
 }

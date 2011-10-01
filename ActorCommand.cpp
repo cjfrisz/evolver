@@ -6,7 +6,7 @@
 namespace evolver {
 
   ActorCommand::ActorCommand () {
-    this->actor = NULL;
+    // Nothing to do yet
   }
 
   ActorCommand::~ActorCommand () {
@@ -25,7 +25,7 @@ namespace evolver {
     return *this;
   }
 
-  Actor *ActorCommand::getActor () {
+  Actor &ActorCommand::getActor () {
     return this->actor;
   }
 
@@ -42,7 +42,7 @@ namespace evolver {
   }
 
   void ActorCommand::copyActorCommand (const ActorCommand &original) {
-    *(this->actor) = *(original.actor);
+    this->actor = original.actor;
 
     return;
   }
