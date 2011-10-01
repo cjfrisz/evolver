@@ -1,6 +1,6 @@
 #include <cstdlib>
 
-#include "Point2D.h"
+#include "Point2D.tcc"
 #include "Actor.h"
 #include "FallBehavior.h"
 #include "JumpBehavior.h"
