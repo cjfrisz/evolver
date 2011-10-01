@@ -29,7 +29,7 @@ namespace evolver {
     return this->actor;
   }
 
-  void ActorCommand::setActor (Actor *actor) {
+  void ActorCommand::setActor (Actor &actor) {
     this->actor = actor;
 
     return;
