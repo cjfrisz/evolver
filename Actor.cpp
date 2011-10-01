@@ -36,15 +36,15 @@ namespace evolver {
     return this->origin.getY();
   }
 
-  FallBehavior *Actor::getFallBehavior () {
+  FallBehavior &Actor::getFallBehavior () {
     return this->falling;
   }
 
-  MoveBehavior *Actor::getMoveBehavior () {
+  MoveBehavior &Actor::getMoveBehavior () {
     return this->moving;
   }
 
-  JumpBehavior *Actor::getJumpBehavior () {
+  JumpBehavior &Actor::getJumpBehavior () {
     return this->jumping;
   }
 
@@ -60,19 +60,19 @@ namespace evolver {
     return;
   }
 
-  void Actor::setFallBehavior (FallBehavior *falling) {
+  void Actor::setFallBehavior (FallBehavior &falling) {
     this->falling = falling;
 
     return;
   }
 
-  void Actor::setMoveBehavior (MoveBehavior *moving) {
+  void Actor::setMoveBehavior (MoveBehavior &moving) {
     this->moving = moving;
 
     return;
   }
 
-  void Actor::setJumpBehavior (JumpBehavior *jumping) {
+  void Actor::setJumpBehavior (JumpBehavior &jumping) {
     this->jumping = jumping;
 
     return;
