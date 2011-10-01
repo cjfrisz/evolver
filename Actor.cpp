@@ -9,26 +9,11 @@
 namespace evolver {
 
   Actor::Actor () {
-    this->origin = new Point2D<float>();
-    this->falling = NULL;
-    this->jumping = NULL;
-    this->moving = NULL;
+    // Nothing to do yet
   }
 
   Actor::~Actor () {
-    delete this->origin;
-
-    if (this->falling != NULL) {
-      delete this->falling;
-    }
-
-    if (this->jumping != NULL) {
-      delete this->jumping;
-    }
-
-    if (this->moving != NULL) {
-      delete this->moving;
-    }
+    // Nothing to do yet
   }
 
   Actor::Actor (const Actor &original) {
@@ -44,11 +29,11 @@ namespace evolver {
   }
 
   float Actor::getActorOriginX () {
-    return this->origin->getX();
+    return this->origin.getX();
   }
 
   float Actor::getActorOriginY () {
-    return this->origin->getY();
+    return this->origin.getY();
   }
 
   FallBehavior *Actor::getFallBehavior () {
@@ -64,13 +49,13 @@ namespace evolver {
   }
 
   void Actor::setActorOriginX (float x) {
-    this->origin->setX(x);
+    this->origin.setX(x);
     
     return;
   }
 
   void Actor::setActorOriginY (float y) {
-    this->origin->setY(y);
+    this->origin.setY(y);
 
     return;
   }
