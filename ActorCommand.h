@@ -19,7 +19,7 @@ namespace evolver {
 
     void setActor (Actor &actor);
 
-    virtual void execute (void);
+    virtual void execute (void) = 0;
     
   protected:
     void copyActorCommand (const ActorCommand &original);

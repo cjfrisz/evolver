@@ -35,12 +35,6 @@ namespace evolver {
     return;
   }
 
-  void ActorCommand::execute () {
-    // Nothing to do
-  
-    return;
-  }
-
   void ActorCommand::copyActorCommand (const ActorCommand &original) {
     this->actor = original.actor;
 
